@@ -56,6 +56,32 @@ p6df::modules::github::external::brew() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::github::langs()
+#
+#>
+######################################################################
+p6df::modules::github::langs() {
+
+  local extensions=(
+  		ericwb/gh-alerts
+		einride/gh-dependabot
+		andyfeller/gh-dependency-report
+		mtoohey31/gh-foreach
+		dlvhdr/gh-prs
+		meiji163/gh-search
+		jkeech/gh-shell
+		vilmibm/gh-user-status
+	)
+
+  local ext
+  foreach ext in $extensions; do
+    gh extension install $ext
+  done
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::github::init()
 #
 #>
