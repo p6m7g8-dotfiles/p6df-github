@@ -48,14 +48,11 @@
 - p6df::modules::github::deps()
 - p6df::modules::github::external::brew()
 - p6df::modules::github::external::yum()
-- p6df::modules::github::home::symlink()
 - p6df::modules::github::init()
 - p6df::modules::github::langs()
-- p6df::modules::github::langs::clones()
-- p6df::modules::github::langs::clones::focused()
-- p6df::modules::github::langs::clones::forked()
-- p6df::modules::github::langs::clones::misc()
+- p6df::modules::github::prompt::line()
 - p6df::modules::github::vscodes()
+- str str = p6_github_prompt_info()
 
 
 

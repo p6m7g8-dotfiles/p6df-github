@@ -111,3 +111,42 @@ p6df::modules::github::aliases::init() {
   alias ghC=p6df_ghpC
   alias ghm=p6df_ghmp
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::prompt::line()
+#
+#>
+######################################################################
+p6df::modules::github::prompt::line() {
+  p6_github_prompt_info
+}
+
+######################################################################
+#<
+#
+# Function: str str = p6_github_prompt_info()
+#
+#  Returns:
+#	str - str
+#
+#>
+######################################################################
+p6_github_prompt_info() {
+
+  if p6_git_inside_tree; then
+    local pr
+    local title
+    local count
+
+    pr=$(gh pr list -q "." --json number | jq -r ".[0].number")
+    title=$(gh pr list -q "." --json title | jq -r ".[0].title")
+    count=$(gh pr list | wc -l | sed -e 's, *,,g')
+
+    local str
+    str="github:\t  c:$count pr:$pr t:{$title}"
+
+    p6_return_str "$str"
+   fi
+}
