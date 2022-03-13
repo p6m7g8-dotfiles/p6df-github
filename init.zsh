@@ -62,43 +62,42 @@ p6df::modules::github::external::brew() {
 ######################################################################
 p6df::modules::github::langs() {
 
-  #environments f jira pr-dtaft repo-collab repo-topic
+  # environments f jira pr-dtaft repo-collab repo-topic
 
   local extensions=(
-		dlvhdr/gh-prs
-		yusukebe/gh-markdown-preview
-		korosuke613/gh-user-stars
-		vilmibm/gh-user-status
-		meiji163/gh-notify
-		matt-bartel/gh-clone-org
-		heaths/gh-label
-		mislav/gh-delete-repo
-		kentaro-m/gh-lspr
-		yuler/gh-download
-		mislav/gh-repo-collab
-		YuG1224/gh-lgtmoon
-		sachaos/gh-stars
-		ericwb/gh-alerts
-		gitpod-io/gh-gp
-		daido1976/gh-default-branch
-		HaywardMorihara/gh-tidy
-		cschleiden/gh-actionlint
-		andyfeller/gh-dependency-report
-		mislav/gh-repo-topic
-		owenvoke/gh-gpg-key
-		einride/gh-dependabot
-		chelnak/gh-environments
-		k1LoW/gh-star-history
-		yuri-1987/gh-deploy
-		jnmiller-va/gh-project-manager
-		geoffreywiseman/gh-actuse
-		mtoohey31/gh-foreach
-		meiji163/gh-search
-		jkeech/gh-shell
-	)
+    andyfeller/gh-dependency-report
+    chelnak/gh-environments
+    cschleiden/gh-actionlint
+    daido1976/gh-default-branch
+    dlvhdr/gh-prs
+    einride/gh-dependabot
+    ericwb/gh-alerts
+    geoffreywiseman/gh-actuse
+    gitpod-io/gh-gp
+    HaywardMorihara/gh-tidy
+    heaths/gh-label
+    jkeech/gh-shell
+    jnmiller-va/gh-project-manager
+    k1LoW/gh-star-history
+    kentaro-m/gh-lspr
+    korosuke613/gh-user-stars
+    matt-bartel/gh-clone-org
+    meiji163/gh-notify
+    meiji163/gh-search
+    mislav/gh-delete-repo
+    mislav/gh-repo-collab
+    mislav/gh-repo-topic
+    mtoohey31/gh-foreach
+    sachaos/gh-stars
+    vilmibm/gh-user-status
+    YuG1224/gh-lgtmoon
+    yuler/gh-download
+    yuri-1987/gh-deploy
+    yusukebe/gh-markdown-preview
+  )
 
   local ext
-  foreach ext in $extensions; do
+  for ext in $extensions; do
     gh extension install $ext
   done
 }
@@ -172,5 +171,5 @@ p6_github_prompt_info() {
     str="github:\t  c:$count pr:$pr t:{$title}"
 
     p6_return_str "$str"
-   fi
+  fi
 }
