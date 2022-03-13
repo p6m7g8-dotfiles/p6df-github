@@ -62,15 +62,39 @@ p6df::modules::github::external::brew() {
 ######################################################################
 p6df::modules::github::langs() {
 
+  #environments f jira pr-dtaft repo-collab repo-topic
+
   local extensions=(
-  		ericwb/gh-alerts
-		einride/gh-dependabot
-		andyfeller/gh-dependency-report
-		mtoohey31/gh-foreach
 		dlvhdr/gh-prs
+		yusukebe/gh-markdown-preview
+		korosuke613/gh-user-stars
+		vilmibm/gh-user-status
+		meiji163/gh-notify
+		matt-bartel/gh-clone-org
+		heaths/gh-label
+		mislav/gh-delete-repo
+		kentaro-m/gh-lspr
+		yuler/gh-download
+		mislav/gh-repo-collab
+		YuG1224/gh-lgtmoon
+		sachaos/gh-stars
+		ericwb/gh-alerts
+		gitpod-io/gh-gp
+		daido1976/gh-default-branch
+		HaywardMorihara/gh-tidy
+		cschleiden/gh-actionlint
+		andyfeller/gh-dependency-report
+		mislav/gh-repo-topic
+		owenvoke/gh-gpg-key
+		einride/gh-dependabot
+		chelnak/gh-environments
+		k1LoW/gh-star-history
+		yuri-1987/gh-deploy
+		jnmiller-va/gh-project-manager
+		geoffreywiseman/gh-actuse
+		mtoohey31/gh-foreach
 		meiji163/gh-search
 		jkeech/gh-shell
-		vilmibm/gh-user-status
 	)
 
   local ext
