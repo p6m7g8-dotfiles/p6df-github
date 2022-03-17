@@ -179,12 +179,5 @@ p6df::modules::github::prompt::line() {
 ######################################################################
 p6df::modules::github::clone::focused() {
 
-  _p6df::modules::github::clone "$P6_DFZ_SRC_FOCUSED_DIR" "$@"
-}
-
-_p6df::modules::github::clone() {
-  local dir="$1"
-  local login="$2"
-
   p6_github_login_clone "$login" "$dir"
 }
