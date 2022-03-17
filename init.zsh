@@ -88,6 +88,7 @@ p6df::modules::github::langs() {
     mislav/gh-repo-collab
     mislav/gh-repo-topic
     mtoohey31/gh-foreach
+    p6m7g8/gh-parallel
     sachaos/gh-stars
     vilmibm/gh-user-status
     YuG1224/gh-lgtmoon
