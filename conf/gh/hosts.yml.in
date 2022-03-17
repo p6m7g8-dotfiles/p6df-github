@@ -1,0 +1,4 @@
+github.com:
+    user: GH_USER
+    oauth_token: GH_TOKEN
+    git_protocol: https

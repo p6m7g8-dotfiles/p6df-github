@@ -52,7 +52,6 @@
 - p6df::modules::github::langs()
 - p6df::modules::github::prompt::line()
 - p6df::modules::github::vscodes()
-- str str = p6_github_prompt_info()
 
 
 

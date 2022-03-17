@@ -117,6 +117,24 @@ p6df::modules::github::init() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::github::home::symlink()
+#
+#  Environment:	 GH_TOKEN P6_DFZ_SRC_P6M7G8_DIR
+#>
+######################################################################
+p6df::modules::github::home::symlink() {
+
+  ln -fs $P6_DFZ_SRC_P6M7G8_DIR/p6df-github/conf/gh .config/gh
+  (
+    cd .config/gh
+    cp hosts.yml.in hosts.yml
+    perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
+  )
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::github::aliases::init()
 #
 #>
@@ -149,27 +167,23 @@ p6df::modules::github::prompt::line() {
 ######################################################################
 #<
 #
-# Function: str str = p6_github_prompt_info()
+# Function: p6df::modules::github::clone::focused(dir, login)
 #
-#  Returns:
-#	str - str
+#  Args:
+#	dir -
+#	login -
 #
+#  Environment:	 P6_DFZ_SRC_FOCUSED_DIR
 #>
 ######################################################################
-p6_github_prompt_info() {
+p6df::modules::github::clone::focused() {
 
-  if p6_git_inside_tree; then
-    local pr
-    local title
-    local count
+  _p6df::modules::github::clone "$P6_DFZ_SRC_FOCUSED_DIR" "$@"
+}
 
-    pr=$(gh pr list -q "." --json number | jq -r ".[0].number")
-    title=$(gh pr list -q "." --json title | jq -r ".[0].title")
-    count=$(gh pr list | wc -l | sed -e 's, *,,g')
+_p6df::modules::github::clone() {
+  local dir="$1"
+  local login="$2"
 
-    local str
-    str="github:\t  c:$count pr:$pr t:{$title}"
-
-    p6_return_str "$str"
-  fi
+  p6_github_login_clone "$login" "$dir"
 }

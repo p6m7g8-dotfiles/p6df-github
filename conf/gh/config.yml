@@ -1,0 +1,4 @@
+git_protocol: https
+editor: vim
+prompt: enabled
+pager: cat
