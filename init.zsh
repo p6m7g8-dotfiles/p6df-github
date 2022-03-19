@@ -7,8 +7,8 @@
 ######################################################################
 p6df::modules::github::deps() {
   ModuleDeps=(
-    p6m7g8/p6github
-    p6m7g8/p6df-git
+    p6m7g8-dotfiles/p6github
+    p6m7g8-dotfiles/p6df-git
   )
 }
 
@@ -36,8 +36,9 @@ p6df::modules::github::vscodes() {
 ######################################################################
 p6df::modules::github::external::yum() {
 
-  wget https://github.com/cli/cli/releases/download/v1.8.0/gh_1.8.0_linux_amd64.tar.gz -O - | tar xz
-  sudo mv gh_1.8.0_linux_amd64/bin/gh /usr/bin/gh
+  
+  wget https://github.com/cli/cli/releases/download/v2.6.0/gh_2.6.0_linux_amd64.tar.gz
+  sudo mv gh_2.6.0_linux_amd64/bin/gh /usr/bin/gh
 }
 
 ######################################################################
@@ -125,7 +126,7 @@ p6df::modules::github::init() {
 ######################################################################
 p6df::modules::github::home::symlink() {
 
-  ln -fs $P6_DFZ_SRC_P6M7G8_DIR/p6df-github/conf/gh .config/gh
+  ln -fs $P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh .config/gh
   (
     cd .config/gh
     cp hosts.yml.in hosts.yml
