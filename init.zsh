@@ -126,10 +126,10 @@ p6df::modules::github::init() {
 ######################################################################
 p6df::modules::github::home::symlink() {
 
-  ln -fs $P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh .config/gh
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh" ".config/gh"
   (
-    cd .config/gh
-    cp hosts.yml.in hosts.yml
+    p6_dir_cd ".config/gh"
+    p6_file_copy "hosts.yml.in" "hosts.yml"
     perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
   )
 }
