@@ -36,7 +36,6 @@ p6df::modules::github::vscodes() {
 ######################################################################
 p6df::modules::github::external::yum() {
 
-  
   wget https://github.com/cli/cli/releases/download/v2.6.0/gh_2.6.0_linux_amd64.tar.gz
   sudo mv gh_2.6.0_linux_amd64/bin/gh /usr/bin/gh
 }
@@ -143,16 +142,95 @@ p6df::modules::github::home::symlink() {
 ######################################################################
 p6df::modules::github::aliases::init() {
 
-  alias p6df_ghs="p6_github_gh_pr_submit"
-  alias p6df_ghpl="p6_github_gh_pr_list"
-  alias p6df_ghpc="p6_github_gh_pr_checkout"
-  alias p6df_ghpC="p6_github_gh_pr_comment"
-  alias p6df_ghpm="p6_github_gh_pr_merge"
+  alias p6_ghpl="p6df::modules::github::gh::pr::list"
+  alias p6_ghpll="p6df::modules::github::gh::pr::last"
+  alias p6_ghpml="p6df::modules::github::gh::pr::merge::last"
+  alias p6_ghs="p6df::modules::github::gh::submit"
+  alias p6_ght="p6df::modules::github::gh::tidy"
 
-  alias ghl=p6df_ghpl
-  alias ghc=p6df_ghpc
-  alias ghC=p6df_ghpC
-  alias ghm=p6df_ghmp
+  alias ghs=p6_ghs
+  alias ghpml=p6_ghpml
+}
+
+p6df::modules::github::gh::pr::list() {
+
+  p6_run_code "gh pr list"
+
+  p6_return_void
+}
+
+p6df::modules::github::gh::tidy() {
+
+  p6_run_code "gh tidy"
+
+  p6_return_void
+}
+
+p6df::modules::github::gh::pr::last() {
+
+  # Prior PR
+  local pr_id
+  pr_id=$(p6_run_code "gh pr list | awk '/OPEN/ {print \$1}'")
+
+  p6_return_int "$pr_id"
+}
+
+p6df::modules::github::gh::pr::merge::last() {
+
+  # Prior PR
+  local pr_id
+  pr_id=$(p6df::modules::github::gh::pr::last)
+
+  # Merge, Squash, Delete Branch
+  p6_run_code "gh pr merge -d -s \"$pr_id\""
+
+  # Pull (already on main)
+  p6_git_p6_pull
+
+  p6_return_void
+}
+
+p6df::modules::github::gh::submit() {
+  local msg="$*"
+
+  # Step 1: Show current state
+  p6_git_p6_status
+
+  # Step 2: Show diff
+  p6_git_p6_diff
+
+  # Step 3: Checkout a branch
+  local branch
+  branch=$(p6_github_branch_transliterate "$msg")
+  p6_git_p6_branch_create "$branch"
+
+  # Step 4: Add
+  p6_git_p6_add_all
+
+  # Step 5: Commit
+  p6_git_p6_commit "$msg"
+
+  # Step 6: Push
+  p6_git_p6_push
+
+  # Step 7: Create PR
+  gh pr create -a $USER -f
+
+  # Step 8: Back to default
+  p6_git_p6_checkout_default
+
+  p6_return_void
+}
+
+p6_github_branch_transliterate() {
+  local msg="$1"
+
+  local branch
+  branch=$(p6_string_replace "$msg" ":" "#")
+  branch=$(p6_string_replace "$branch" " " "_")
+  branch=$(p6_string_replace "$branch" "[^A-Za-z0-9_#]" "")
+
+  p6_return_str "$branch"
 }
 
 ######################################################################
@@ -164,21 +242,4 @@ p6df::modules::github::aliases::init() {
 ######################################################################
 p6df::modules::github::prompt::line() {
   p6_github_prompt_info
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::clone::focused(dir, login)
-#
-#  Args:
-#	dir -
-#	login -
-#
-#  Environment:	 P6_DFZ_SRC_FOCUSED_DIR
-#>
-######################################################################
-p6df::modules::github::clone::focused() {
-
-  p6_github_login_clone "$login" "$dir"
 }
