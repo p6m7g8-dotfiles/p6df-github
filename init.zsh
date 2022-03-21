@@ -131,6 +131,7 @@ p6df::modules::github::home::symlink() {
     p6_file_copy "hosts.yml.in" "hosts.yml"
     perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
   )
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" ".actrc"
 }
 
 ######################################################################
