@@ -142,7 +142,11 @@ p6df::modules::github::home::symlink() {
 #>
 ######################################################################
 p6df::modules::github::aliases::init() {
-  true
+
+  alias ghpS="p6_github_gh_submit"
+  alias ghpml="p6_github_gh_pr_merge_last"
+
+  alias gC="ghpS" # XXX: muscle memory
 }
 
 ######################################################################
