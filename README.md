@@ -51,11 +51,13 @@
 - p6df::modules::github::home::symlink()
 - p6df::modules::github::init()
 - p6df::modules::github::langs()
+- p6df::modules::github::prompt::init()
 - p6df::modules::github::prompt::line()
 - p6df::modules::github::vscodes()
+- str str = p6_gh_prompt_info()
+
 
 
 ## Author
 
 Philip M . Gollucci <pgollucci@p6m7g8.com>
-

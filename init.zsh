@@ -58,6 +58,7 @@ p6df::modules::github::external::brew() {
 #
 # Function: p6df::modules::github::langs()
 #
+#  Environment:	 G1224
 #>
 ######################################################################
 p6df::modules::github::langs() {
@@ -113,6 +114,19 @@ p6df::modules::github::langs() {
 p6df::modules::github::init() {
 
   p6df::modules::github::aliases::init
+  p6df::modules::github::prompt::init
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::prompt::init()
+#
+#>
+######################################################################
+p6df::modules::github::prompt::init() {
+
+  p6df::core::prompt::line::add "p6df::modules::github::prompt::line"
 }
 
 ######################################################################
@@ -120,7 +134,8 @@ p6df::modules::github::init() {
 #
 # Function: p6df::modules::github::home::symlink()
 #
-#  Environment:	 GH_TOKEN P6_DFZ_SRC_P6M7G8_DIR
+#  Depends:	 p6_dir p6_file
+#  Environment:	 GH_TOKEN P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::github::home::symlink() {
@@ -139,6 +154,7 @@ p6df::modules::github::home::symlink() {
 #
 # Function: p6df::modules::github::aliases::init()
 #
+#  Environment:	 XXX
 #>
 ######################################################################
 p6df::modules::github::aliases::init() {
@@ -154,8 +170,29 @@ p6df::modules::github::aliases::init() {
 #
 # Function: p6df::modules::github::prompt::line()
 #
+#  Depends:	 p6_gh
 #>
 ######################################################################
 p6df::modules::github::prompt::line() {
-  p6_github_prompt_info
+  p6_gh_prompt_info
+}
+
+######################################################################
+#<
+#
+# Function: str str = p6_gh_prompt_info()
+#
+#  Returns:
+#	str - str
+#
+#>
+######################################################################
+p6_gh_prompt_info() {
+
+  local str
+  if p6_git_inside_tree; then
+    str="github:\t  "
+  fi
+  
+  p6_return_str "$str"
 }
