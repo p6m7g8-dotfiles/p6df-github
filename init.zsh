@@ -23,8 +23,10 @@ p6df::modules::github::vscodes() {
 
   # vc/github/git
   code --install-extension eamodio.gitlens
+  code --install-extension gimenete.github-linker
   code --install-extension GitHub.vscode-codeql
   code --install-extension GitHub.vscode-pull-request-github
+  code --install-extension KnisterPeter.vscode-github
 }
 
 ######################################################################
