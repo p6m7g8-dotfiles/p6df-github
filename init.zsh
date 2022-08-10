@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 ######################################################################
 #<
 #
@@ -27,6 +28,8 @@ p6df::modules::github::vscodes() {
   code --install-extension GitHub.vscode-codeql
   code --install-extension GitHub.vscode-pull-request-github
   code --install-extension KnisterPeter.vscode-github
+
+  p6_return_void
 }
 
 ######################################################################
@@ -40,6 +43,8 @@ p6df::modules::github::external::yum() {
 
   wget https://github.com/cli/cli/releases/download/v2.6.0/gh_2.6.0_linux_amd64.tar.gz
   sudo mv gh_2.6.0_linux_amd64/bin/gh /usr/bin/gh
+
+  p6_return_void
 }
 
 ######################################################################
@@ -53,6 +58,8 @@ p6df::modules::github::external::brew() {
 
   brew install gh
   brew install act
+
+  p6_return_void
 }
 
 ######################################################################
@@ -104,6 +111,8 @@ p6df::modules::github::langs() {
   for ext in $extensions; do
     gh extension install $ext
   done
+
+  p6_return_void
 }
 
 ######################################################################
@@ -117,6 +126,61 @@ p6df::modules::github::init() {
 
   p6df::modules::github::aliases::init
   p6df::modules::github::prompt::init
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::home::symlink()
+#
+#  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#>
+######################################################################
+p6df::modules::github::home::symlink() {
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh" ".config/gh"
+
+  p6_dir_run ".config/gh" p6df::modules::github::home::symlink::doit
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" ".actrc"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::home::symlink::doit()
+#
+#  Environment:	 GH_TOKEN
+#>
+######################################################################
+p6df::modules::github::home::symlink::doit() {
+
+  p6_file_copy "hosts.yml.in" "hosts.yml"
+  perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::aliases::init()
+#
+#  Environment:	 XXX
+#>
+######################################################################
+p6df::modules::github::aliases::init() {
+
+  alias ghpS="p6_github_gh_submit"
+  alias ghpml="p6_github_gh_pr_merge_last"
+
+  alias gC="ghpS" # XXX: muscle memory
+
+  p6_return_void
 }
 
 ######################################################################
@@ -134,45 +198,8 @@ p6df::modules::github::prompt::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::home::symlink()
-#
-#  Depends:	 p6_dir p6_file
-#  Environment:	 GH_TOKEN P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-p6df::modules::github::home::symlink() {
-
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh" ".config/gh"
-  (
-    p6_dir_cd ".config/gh"
-    p6_file_copy "hosts.yml.in" "hosts.yml"
-    perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
-  )
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" ".actrc"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::aliases::init()
-#
-#  Environment:	 XXX
-#>
-######################################################################
-p6df::modules::github::aliases::init() {
-
-  alias ghpS="p6_github_gh_submit"
-  alias ghpml="p6_github_gh_pr_merge_last"
-
-  alias gC="ghpS" # XXX: muscle memory
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::github::prompt::line()
 #
-#  Depends:	 p6_gh
 #>
 ######################################################################
 p6df::modules::github::prompt::line() {
