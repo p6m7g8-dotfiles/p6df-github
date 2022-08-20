@@ -118,21 +118,6 @@ p6df::modules::github::langs() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::init()
-#
-#>
-######################################################################
-p6df::modules::github::init() {
-
-  p6df::modules::github::aliases::init
-  p6df::modules::github::prompt::init
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::github::home::symlink()
 #
 #  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
@@ -142,7 +127,7 @@ p6df::modules::github::home::symlink() {
 
   p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh" ".config/gh"
 
-  p6_dir_run ".config/gh" p6df::modules::github::home::symlink::doit
+  p6_run_dir ".config/gh" p6df::modules::github::home::symlink::doit
 
   p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" ".actrc"
 
@@ -186,41 +171,21 @@ p6df::modules::github::aliases::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::prompt::init()
-#
-#>
-######################################################################
-p6df::modules::github::prompt::init() {
-
-  p6df::core::prompt::line::add "p6df::modules::github::prompt::line"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::prompt::line()
-#
-#>
-######################################################################
-p6df::modules::github::prompt::line() {
-  p6_gh_prompt_info
-}
-
-######################################################################
-#<
-#
-# Function: str str = p6_gh_prompt_info()
+# Function: str str = p6df::modules::github::prompt::line()
 #
 #  Returns:
 #	str - str
 #
+#  Environment:	 P6_DFZ_GITHUB_PROMPT
 #>
 ######################################################################
-p6_gh_prompt_info() {
+p6df::modules::github::prompt::line() {
 
   local str
   if p6_git_inside_tree; then
-    str="github:\t  "
+    if ! p6_string_blank "$P6_DFZ_GITHUB_PROMPT"; then
+      str="github:\t  "
+    fi
   fi
   
   p6_return_str "$str"
