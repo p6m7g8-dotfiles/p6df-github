@@ -27,7 +27,6 @@ p6df::modules::github::vscodes() {
   code --install-extension gimenete.github-linker
   code --install-extension GitHub.vscode-codeql
   code --install-extension GitHub.vscode-pull-request-github
-  code --install-extension KnisterPeter.vscode-github
 
   p6_return_void
 }
