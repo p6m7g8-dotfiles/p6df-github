@@ -1,0 +1,5 @@
+owner: yuri-1987
+name: gh-deploy
+host: github.com
+tag: v0.0.1
+path: /Users/pgollucci/.local/share/gh/extensions/gh-deploy/gh-deploy
