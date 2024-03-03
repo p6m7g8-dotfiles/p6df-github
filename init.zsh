@@ -188,6 +188,6 @@ p6df::modules::github::prompt::line() {
       str="github:\t  "
     fi
   fi
-  
+
   p6_return_str "$str"
 }
