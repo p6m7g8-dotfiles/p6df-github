@@ -161,8 +161,8 @@ p6df::modules::github::home::symlink::doit() {
 ######################################################################
 p6df::modules::github::aliases::init() {
 
-  alias ghpS="p6_github_gh_submit"
-  alias ghpml="p6_github_gh_pr_merge_last"
+  alias ghpS="p6_github_util_submit"
+  alias ghpml="p6_github_util_pr_merge_last"
 
   alias gC="ghpS" # XXX: muscle memory
 
@@ -183,7 +183,7 @@ p6df::modules::github::aliases::init() {
 p6df::modules::github::prompt::line() {
 
   local str
-  if p6_git_inside_tree; then
+  if p6_git_util_inside_tree; then
     if ! p6_string_blank "$P6_DFZ_GITHUB_PROMPT"; then
       str="github:\t  "
     fi
