@@ -121,14 +121,15 @@ p6df::modules::github::langs() {
 #
 # Function: p6df::modules::github::home::symlink()
 #
-#  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#  Environment:	 GH_TOKEN P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::github::home::symlink() {
 
   p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/conf/gh" ".config/gh"
 
-  p6_run_dir ".config/gh" p6df::modules::github::home::symlink::doit
+  p6_file_copy ".config/gh/hosts.yml.in" ".config/gh/hosts.yml"
+  perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," .config/gh/hosts.yml
 
   p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" ".actrc"
 
@@ -138,15 +139,14 @@ p6df::modules::github::home::symlink() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::home::symlink::doit()
+# Function: p6df::modules::github::aliases::init()
 #
-#  Environment:	 GH_TOKEN
 #>
 ######################################################################
-p6df::modules::github::home::symlink::doit() {
+p6df::modules::github::aliases::init() {
 
-  p6_file_copy "hosts.yml.in" "hosts.yml"
-  perl -pi -e "s,GH_TOKEN,$GH_TOKEN, ; s,GH_USER,$GH_USER," hosts.yml
+  alias ghpS="p6df::modules::github::pr::submit"
+  alias ghpMl="p6_github_util_pr_merge_last"
 
   p6_return_void
 }
@@ -154,19 +154,20 @@ p6df::modules::github::home::symlink::doit() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::aliases::init()
+# Function: p6df::modules::github::pr::submit(msg, [pr_num=])
 #
-#  Environment:	 XXX
+#  Args:
+#	msg -
+#	OPTIONAL pr_num - []
+#
+#  Environment:	 EDITOR
 #>
 ######################################################################
-p6df::modules::github::aliases::init() {
+p6df::modules::github::pr::submit() {
+  local msg="$1"
+  local pr_num="${2:-}"
 
-  alias ghpS="p6_github_util_submit"
-  alias ghpml="p6_github_util_pr_merge_last"
-
-  alias gC="ghpS" # XXX: muscle memory
-
-  p6_return_void
+  p6_github_util_pr_submit "$EDITOR" "$USER" "$P6_DFZ_GITHUB_BRANCH_TMPL" "$P6_DFZ_GITHUB_REVIEWER" "$msg" "$pr_num"
 }
 
 ######################################################################

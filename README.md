@@ -49,8 +49,8 @@
 - p6df::modules::github::external::brew()
 - p6df::modules::github::external::yum()
 - p6df::modules::github::home::symlink()
-- p6df::modules::github::home::symlink::doit()
 - p6df::modules::github::langs()
+- p6df::modules::github::pr::submit(msg, [pr_num=])
 - p6df::modules::github::vscodes()
 - str str = p6df::modules::github::prompt::line()
 
