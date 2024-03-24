@@ -22,7 +22,6 @@ p6df::modules::github::deps() {
 ######################################################################
 p6df::modules::github::vscodes() {
 
-  # vc/github/git
   code --install-extension eamodio.gitlens
   code --install-extension gimenete.github-linker
   code --install-extension GitHub.vscode-codeql
@@ -42,8 +41,8 @@ p6df::modules::github::vscodes() {
 ######################################################################
 p6df::modules::github::external::yum() {
 
-  wget https://github.com/cli/cli/releases/download/v2.6.0/gh_2.6.0_linux_amd64.tar.gz
-  sudo mv gh_2.6.0_linux_amd64/bin/gh /usr/bin/gh
+  wget https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_linux_amd64.tar.gz
+  sudo mv gh_2.45.0_linux_amd64/bin/gh /usr/bin/gh
 
   p6_return_void
 }
@@ -57,8 +56,41 @@ p6df::modules::github::external::yum() {
 ######################################################################
 p6df::modules::github::external::brew() {
 
-  brew install gh
-  brew install act
+  p6df::modules::homebrew::cli::brew::install gh
+  p6df::modules::homebrew::cli::brew::install act
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::langs::extensions()
+#
+#>
+######################################################################
+p6df::modules::github::langs::extensions() {
+
+  local extensions=(
+    actions/gh-actions-cache        # manage gh action cache
+    andyfeller/gh-dependency-report # Tell me about dependencies and licenses
+    chelnak/gh-environments         # crud
+    cschleiden/gh-actionlint        # Link .github/workflows/
+    ericwb/gh-alerts                # gh alerts -o $org | awk '{print $3}' | sort | uniq -c | sort -nr
+    gitpod-io/gh-gp                 # gh gp to open .gitpod.yaml
+    HaywardMorihara/gh-tidy         # clean up safely
+    heaths/gh-label                 # label crud
+    mislav/gh-repo-collab           # permissions, teams
+    mislav/gh-repo-topic            # crud topics
+    p6m7g8/gh-parallel              # mine
+    rsese/gh-actions-status         # stuff
+    vilmibm/gh-user-status          # status aim crud
+  )
+
+  local ext
+  for ext in $extensions; do
+    gh extension install $ext
+  done
 
   p6_return_void
 }
@@ -68,50 +100,11 @@ p6df::modules::github::external::brew() {
 #
 # Function: p6df::modules::github::langs()
 #
-#  Environment:	 G1224
 #>
 ######################################################################
 p6df::modules::github::langs() {
 
-  # environments f jira pr-dtaft repo-collab repo-topic
-
-  local extensions=(
-    andyfeller/gh-dependency-report
-    chelnak/gh-environments
-    cschleiden/gh-actionlint
-    daido1976/gh-default-branch
-    dlvhdr/gh-prs
-    einride/gh-dependabot
-    ericwb/gh-alerts
-    geoffreywiseman/gh-actuse
-    gitpod-io/gh-gp
-    HaywardMorihara/gh-tidy
-    heaths/gh-label
-    jkeech/gh-shell
-    jnmiller-va/gh-project-manager
-    k1LoW/gh-star-history
-    kentaro-m/gh-lspr
-    korosuke613/gh-user-stars
-    matt-bartel/gh-clone-org
-    meiji163/gh-notify
-    meiji163/gh-search
-    mislav/gh-delete-repo
-    mislav/gh-repo-collab
-    mislav/gh-repo-topic
-    mtoohey31/gh-foreach
-    p6m7g8/gh-parallel
-    sachaos/gh-stars
-    vilmibm/gh-user-status
-    YuG1224/gh-lgtmoon
-    yuler/gh-download
-    yuri-1987/gh-deploy
-    yusukebe/gh-markdown-preview
-  )
-
-  local ext
-  for ext in $extensions; do
-    gh extension install $ext
-  done
+  p6df::modules::github::langs::extensions
 
   p6_return_void
 }
@@ -145,8 +138,23 @@ p6df::modules::github::home::symlink() {
 ######################################################################
 p6df::modules::github::aliases::init() {
 
-  alias ghpS="p6df::modules::github::pr::submit"
-  alias ghpMl="p6_github_util_pr_merge_last"
+  p6_alias "ghpS" "p6df::modules::github::util::pr::submit"
+  p6_alias "ghpMl" "p6_github_util_pr_merge_last"
+
+  # extensions
+  p6_alias "gheAbd" "p6df::modules::github::ext::alerts::by::dep"      # 1=org
+  p6_alias "gheAbf" "p6df::modules::github::ext::alerts::by::file"     # 1=org
+  p6_alias "gheAbs" "p6df::modules::github::ext::alerts::by::severity" # 1=org
+  p6_alias "gheAby" "p6df::modules::github::ext::alerts::by::repo"     # 1=org
+  p6_alias "gheacl" "p6df::modules::github::ext::actions::cache::list" # in dir
+  p6_alias "gheal" "p6df::modules::github::ext::action::lint"          # 1=org
+  p6_alias "ghedr" "p6df::modules::github::ext::dependences::report"   # 1=org_repo
+  p6_alias "ghegpl" "p6df::modules::github::ext::gitpod::launch"       # in dir
+  p6_alias "ghell" "p6df::modules::github::ext::label::list"           # in dir
+  p6_alias "ghePc" "p6df::modules::github::ext::parallel::clone"       # 1=org 2=dir
+  p6_alias "ghepl" "p6df::modules::github::ext::permissions::list"     # in dir
+  p6_alias "gheta" "p6df::modules::github::ext::tidy::all"             # in dirr
+  p6_alias "ghetl" "p6df::modules::github::ext::topics::list"          # in dir
 
   p6_return_void
 }
@@ -154,20 +162,21 @@ p6df::modules::github::aliases::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::pr::submit(msg, [pr_num=])
+# Function: p6df::modules::github::init(_module, dir)
 #
 #  Args:
-#	msg -
-#	OPTIONAL pr_num - []
+#	_module -
+#	dir -
 #
-#  Environment:	 EDITOR
 #>
 ######################################################################
-p6df::modules::github::pr::submit() {
-  local msg="$1"
-  local pr_num="${2:-}"
+p6df::modules::github::init() {
+  local _module="$1"
+  local dir="$2"
 
-  p6_github_util_pr_submit "$EDITOR" "$USER" "$P6_DFZ_GITHUB_BRANCH_TMPL" "$P6_DFZ_GITHUB_REVIEWER" "$msg" "$pr_num"
+  p6_bootstrap "$dir"
+
+  p6_return_void
 }
 
 ######################################################################
