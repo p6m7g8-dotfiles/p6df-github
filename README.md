@@ -94,6 +94,7 @@
 - p6df::modules::github::init(_module, dir)
 - p6df::modules::github::langs()
 - p6df::modules::github::langs::extensions()
+- p6df::modules::github::org::name::sanity(dir, dir)
 - p6df::modules::github::vscodes()
 - str str = p6df::modules::github::prompt::line()
 
@@ -101,6 +102,9 @@
 
 ### p6df-github/lib/util.sh
 
+- p6df::modules::github::org::archive(dir)
+- p6df::modules::github::org::name::sanity(dir, dir)
+- p6df::modules::github::org::unarchive(dir)
 - p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])
 
 ## Hierarchy
