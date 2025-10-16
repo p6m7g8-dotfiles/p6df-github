@@ -1,10 +1,11 @@
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::ext::parallel::clone(org)
+# Function: p6df::modules::github::ext::parallel::clone(org, dir)
 #
 #  Args:
 #	org -
+#	dir -
 #
 #>
 ######################################################################
