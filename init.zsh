@@ -201,3 +201,28 @@ p6df::modules::github::prompt::line() {
 
   p6_return_str "$str"
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::org::name::sanity(dir, dir)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#	dir - dir MUST also be the org name
+#
+#  Environment:	 MUST
+#>
+######################################################################
+p6df::modules::github::org::name::sanity() {
+  local dir="$1" # dir MUST also be the org name
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    p6_github_util_repo_rename_strip_leading_underscores "$org/$repo"
+  done
+
+  p6_return_void
+}
