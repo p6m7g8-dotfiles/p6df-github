@@ -115,7 +115,7 @@ p6df::modules::github::util::org::workflow::upgrade-main::run() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     echo "===> $dir/$repo"
-    (cd $dir/$repo ; p6_github_util_repo_workflow_upgrade_main_run)
+    (cd "$dir/$repo" ; p6_github_util_repo_workflow_upgrade_main_run)
   done
 
   p6_return_void
