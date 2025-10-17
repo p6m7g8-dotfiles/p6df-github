@@ -205,10 +205,9 @@ p6df::modules::github::prompt::line() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::org::name::sanity(dir, dir)
+# Function: p6df::modules::github::org::name::sanity(dir)
 #
 #  Args:
-#	dir - dir MUST also be the org name
 #	dir - dir MUST also be the org name
 #
 #  Environment:	 MUST

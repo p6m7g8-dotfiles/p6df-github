@@ -25,16 +25,15 @@ p6df::modules::github::util::pr::submit() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::org::name::sanity(dir, dir)
+# Function: p6df::modules::github::util::org::name::sanity(dir)
 #
 #  Args:
-#	dir - dir MUST also be the org name
 #	dir - dir MUST also be the org name
 #
 #  Environment:	 MUST
 #>
 ######################################################################
-p6df::modules::github::org::name::sanity() {
+p6df::modules::github::util::org::name::sanity() {
   local dir="$1" # dir MUST also be the org name
 
   local org="$dir"
@@ -50,7 +49,7 @@ p6df::modules::github::org::name::sanity() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::org::archive(dir)
+# Function: p6df::modules::github::util::org::archive(dir)
 #
 #  Args:
 #	dir - dir MUST also be the org name
@@ -58,7 +57,7 @@ p6df::modules::github::org::name::sanity() {
 #  Environment:	 MUST
 #>
 ######################################################################
-p6df::modules::github::org::archive() {
+p6df::modules::github::util::org::archive() {
   local dir="$1" # dir MUST also be the org name
 
   local org="$dir"
@@ -75,7 +74,7 @@ p6df::modules::github::org::archive() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::org::unarchive(dir)
+# Function: p6df::modules::github::util::org::unarchive(dir)
 #
 #  Args:
 #	dir - dir MUST also be the org name
@@ -83,7 +82,7 @@ p6df::modules::github::org::archive() {
 #  Environment:	 MUST
 #>
 ######################################################################
-p6df::modules::github::org::unarchive() {
+p6df::modules::github::util::org::unarchive() {
   local dir="$1" # dir MUST also be the org name
 
   local org="$dir"
@@ -95,4 +94,30 @@ p6df::modules::github::org::unarchive() {
   done
 
   p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#
+#  Environment:	 MUST
+#>
+######################################################################
+p6df::modules::github::util::org::workflow::upgrade-main::run() {
+  local dir="$1" # dir MUST also be the org name
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    echo "===> $dir/$repo"
+    (cd "$dir/$repo" ; p6_github_util_repo_workflow_upgrade_main_run)
+  done
+
+  p6_return_void
+
 }
