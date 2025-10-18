@@ -89,7 +89,7 @@ p6df::modules::github::langs::extensions() {
 
   local ext
   for ext in $extensions; do
-    gh extension install $ext
+    gh extension install "$ext"
   done
 
   p6_return_void
@@ -140,6 +140,7 @@ p6df::modules::github::aliases::init() {
 
   p6_alias "ghpS" "p6df::modules::github::util::pr::submit"
   p6_alias "ghpMl" "p6_github_util_pr_merge_last"
+  p6_alias "ghpl" "p6_github_cli_pr_list"
 
   # extensions
   p6_alias "gheAbd" "p6df::modules::github::ext::alerts::by::dep"      # 1=org
@@ -148,12 +149,12 @@ p6df::modules::github::aliases::init() {
   p6_alias "gheAby" "p6df::modules::github::ext::alerts::by::repo"     # 1=org
   p6_alias "gheacl" "p6df::modules::github::ext::actions::cache::list" # in dir
   p6_alias "gheal" "p6df::modules::github::ext::action::lint"          # 1=org
-  p6_alias "ghedr" "p6df::modules::github::ext::dependences::report"   # 1=org_repo
+  p6_alias "ghedr" "p6df::modules::github::ext::dependencies::report"  # 1=org_repo
   p6_alias "ghegpl" "p6df::modules::github::ext::gitpod::launch"       # in dir
   p6_alias "ghell" "p6df::modules::github::ext::label::list"           # in dir
   p6_alias "ghePc" "p6df::modules::github::ext::parallel::clone"       # 1=org 2=dir
   p6_alias "ghepl" "p6df::modules::github::ext::permissions::list"     # in dir
-  p6_alias "gheta" "p6df::modules::github::ext::tidy::all"             # in dirr
+  p6_alias "gheta" "p6df::modules::github::ext::tidy::all"             # in dir
   p6_alias "ghetl" "p6df::modules::github::ext::topics::list"          # in dir
 
   p6_return_void
@@ -200,28 +201,4 @@ p6df::modules::github::prompt::line() {
   fi
 
   p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::org::name::sanity(dir)
-#
-#  Args:
-#	dir - dir MUST also be the org name
-#
-#  Environment:	 MUST
-#>
-######################################################################
-p6df::modules::github::org::name::sanity() {
-  local dir="$1" # dir MUST also be the org name
-
-  local org="$dir"
-
-  local repo
-  for repo in $(p6_dir_list "$dir"); do
-    p6_github_util_repo_rename_strip_leading_underscores "$org/$repo"
-  done
-
-  p6_return_void
 }

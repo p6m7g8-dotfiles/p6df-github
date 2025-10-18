@@ -25,9 +25,10 @@ p6df::modules::github::util::pr::submit() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::util::org::name::sanity(dir)
+# Function: p6df::modules::github::util::org::name::sanity(dir, dir)
 #
 #  Args:
+#	dir - dir MUST also be the org name
 #	dir - dir MUST also be the org name
 #
 #  Environment:	 MUST
@@ -64,8 +65,10 @@ p6df::modules::github::util::org::archive() {
 
   local repo
   for repo in $(p6_dir_list "$dir"); do
-    echo "===> $dir/$repo"
-    (cd $dir/$repo ; p6_github_util_repo_archive)
+    p6_h1 "$dir/$repo"
+    (cd $dir/$repo || continue
+    p6_github_util_repo_archive
+    )
   done
 
   p6_return_void
@@ -89,8 +92,9 @@ p6df::modules::github::util::org::unarchive() {
 
   local repo
   for repo in $(p6_dir_list "$dir"); do
-    echo "===> $dir/$repo"
-    (cd $dir/$repo ; p6_github_util_repo_unarchive)
+    p6_h1 "$dir/$repo"
+    (cd $dir/$repo || continue
+     p6_github_util_repo_unarchive)
   done
 
   p6_return_void
@@ -114,10 +118,68 @@ p6df::modules::github::util::org::workflow::upgrade-main::run() {
 
   local repo
   for repo in $(p6_dir_list "$dir"); do
-    echo "===> $dir/$repo"
-    (cd "$dir/$repo" ; p6_github_util_repo_workflow_upgrade_main_run)
+    p6_h1 "$dir/$repo"
+    (cd "$dir/$repo" || continue
+    p6_github_util_repo_workflow_upgrade_main_run
+    )
   done
 
   p6_return_void
 
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::org::admin::show(dir)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#
+#  Environment:	 MUST
+#>
+######################################################################
+p6df::modules::github::util::org::admin::show() {
+  local dir="$1" # dir MUST also be the org name
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    p6_h1 "$dir/$repo"
+    (cd "$dir/$repo" || continue
+    p6_git_cli_checkout
+    p6_git_cli_pull_rebase_autostash_ff_only
+    p6_git_cli_status_s
+    p6_git_cli_diff
+    p6_github_cli_pr_list
+    )
+  done
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::org::name::sanity(dir, dir)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#	dir - dir MUST also be the org name
+#
+#  Environment:	 MUST
+#>
+######################################################################
+p6df::modules::github::util::org::name::sanity() {
+  local dir="$1" # dir MUST also be the org name
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    p6_github_util_repo_rename_strip_leading_underscores "$org/$repo"
+  done
+
+  p6_return_void
 }

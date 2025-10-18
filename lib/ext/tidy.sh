@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 ######################################################################
 #<
 #
@@ -7,7 +8,8 @@
 ######################################################################
 p6df::modules::github::ext::tidy::all() {
 
-    local trunk=$(p6_git_branch_base_get)
+    local trunk
+    trunk=$(p6_git_branch_base_get)
 
     gh tidy --skip-update-check --rebase-all --trunk "$trunk"
 
