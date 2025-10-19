@@ -67,9 +67,7 @@ p6df::modules::github::util::org::archive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    (cd "$dir/$repo" || continue
-    p6_github_util_repo_archive
-    )
+    p6_run_dir "$dir/$repo" p6_github_util_repo_archive
   done
 
   p6_return_void
@@ -94,8 +92,7 @@ p6df::modules::github::util::org::unarchive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    (cd "$dir/$repo" || continue
-     p6_github_util_repo_unarchive)
+    p6_run_dir "$dir/$repo" p6_github_util_repo_unarchive
   done
 
   p6_return_void
