@@ -8,7 +8,7 @@
 ######################################################################
 p6df::modules::github::deps() {
 
-  # shellcheck disable=2304
+  # shellcheck disable=2034
   ModuleDeps=(
     p6m7g8-dotfiles/p6github
     p6m7g8-dotfiles/p6df-git
