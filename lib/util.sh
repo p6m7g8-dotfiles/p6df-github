@@ -34,6 +34,7 @@ p6df::modules::github::util::pr::submit() {
 #  Environment:	 MUST
 #>
 ######################################################################
+# shellcheck disable=2329
 p6df::modules::github::util::org::name::sanity() {
   local dir="$1" # dir MUST also be the org name
 
@@ -66,7 +67,7 @@ p6df::modules::github::util::org::archive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    (cd $dir/$repo || continue
+    (cd "$dir/$repo" || continue
     p6_github_util_repo_archive
     )
   done
@@ -93,7 +94,7 @@ p6df::modules::github::util::org::unarchive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    (cd $dir/$repo || continue
+    (cd "$dir/$repo" || continue
      p6_github_util_repo_unarchive)
   done
 

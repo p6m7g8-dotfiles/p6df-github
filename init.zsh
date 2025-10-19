@@ -7,6 +7,8 @@
 #>
 ######################################################################
 p6df::modules::github::deps() {
+
+  # shellcheck disable=2304
   ModuleDeps=(
     p6m7g8-dotfiles/p6github
     p6m7g8-dotfiles/p6df-git
@@ -71,7 +73,7 @@ p6df::modules::github::external::brew() {
 ######################################################################
 p6df::modules::github::langs::extensions() {
 
-  local extensions=(
+  local -a extensions=(
     actions/gh-actions-cache        # manage gh action cache
     andyfeller/gh-dependency-report # Tell me about dependencies and licenses
     chelnak/gh-environments         # crud
@@ -88,12 +90,13 @@ p6df::modules::github::langs::extensions() {
   )
 
   local ext
-  for ext in $extensions; do
-    gh extension install "$ext"
+  for ext in "${extensions[@]}"; do
+    gh extension install "$ext" || print "failed: $ext"
   done
 
   p6_return_void
 }
+
 
 ######################################################################
 #<
