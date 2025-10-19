@@ -28,15 +28,17 @@
 - gheAby IS p6df::modules::github::ext::alerts::by::repo
 - gheacl IS p6df::modules::github::ext::actions::cache::list
 - gheal IS p6df::modules::github::ext::action::lint
-- ghedr IS p6df::modules::github::ext::dependences::report
+- ghedr IS p6df::modules::github::ext::dependencies::report
 - ghegpl IS p6df::modules::github::ext::gitpod::launch
 - ghell IS p6df::modules::github::ext::label::list
 - ghePc IS p6df::modules::github::ext::parallel::clone
 - ghepl IS p6df::modules::github::ext::permissions::list
 - gheta IS p6df::modules::github::ext::tidy::all
 - ghetl IS p6df::modules::github::ext::topics::list
+- ghpl IS p6_github_cli_pr_list
 - ghpMl IS p6_github_util_pr_merge_last
 - ghpS IS p6df::modules::github::util::pr::submit
+
 ### Functions
 
 ## ext
@@ -56,7 +58,7 @@
 
 ### p6df-github/lib/ext/dependencies.sh
 
-- p6df::modules::github::ext::dependences::report(org_repo)
+- p6df::modules::github::ext::dependencies::report(org_repo)
 
 ### p6df-github/lib/ext/gitpod.sh
 
@@ -94,7 +96,6 @@
 - p6df::modules::github::init(_module, dir)
 - p6df::modules::github::langs()
 - p6df::modules::github::langs::extensions()
-- p6df::modules::github::org::name::sanity(dir)
 - p6df::modules::github::vscodes()
 - str str = p6df::modules::github::prompt::line()
 
@@ -102,8 +103,10 @@
 
 ### p6df-github/lib/util.sh
 
+- p6df::modules::github::util::org::admin::show(dir)
 - p6df::modules::github::util::org::archive(dir)
-- p6df::modules::github::util::org::name::sanity(dir)
+- p6df::modules::github::util::org::name::sanity(dir, dir)
+- p6df::modules::github::util::org::name::sanity(dir, dir)
 - p6df::modules::github::util::org::unarchive(dir)
 - p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
 - p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])
