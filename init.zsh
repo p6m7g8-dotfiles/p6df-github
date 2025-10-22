@@ -85,6 +85,7 @@ p6df::modules::github::langs::extensions() {
     mislav/gh-repo-collab           # permissions, teams
     mislav/gh-repo-topic            # crud topics
     p6m7g8/gh-parallel              # mine
+    p6m7g8/gh-ruleset-branch        # mine
     rsese/gh-actions-status         # stuff
     vilmibm/gh-user-status          # status aim crud
   )
@@ -96,7 +97,6 @@ p6df::modules::github::langs::extensions() {
 
   p6_return_void
 }
-
 
 ######################################################################
 #<
@@ -156,6 +156,7 @@ p6df::modules::github::aliases::init() {
   p6_alias "ghegpl" "p6df::modules::github::ext::gitpod::launch"       # in dir
   p6_alias "ghell" "p6df::modules::github::ext::label::list"           # in dir
   p6_alias "ghePc" "p6df::modules::github::ext::parallel::clone"       # 1=org 2=dir
+  p6_alias "ghrb" "p6df::modules::github::ext::ruleset::branch"        # varying args
   p6_alias "ghepl" "p6df::modules::github::ext::permissions::list"     # in dir
   p6_alias "gheta" "p6df::modules::github::ext::tidy::all"             # in dir
   p6_alias "ghetl" "p6df::modules::github::ext::topics::list"          # in dir
