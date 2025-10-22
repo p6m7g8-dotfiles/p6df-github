@@ -38,7 +38,7 @@
 - ghpl IS p6_github_cli_pr_list
 - ghpMl IS p6_github_util_pr_merge_last
 - ghpS IS p6df::modules::github::util::pr::submit
-
+- ghrb IS p6df::modules::github::ext::ruleset::branch
 ### Functions
 
 ## ext
@@ -76,6 +76,10 @@
 
 - p6df::modules::github::ext::permissions::list(org_repo)
 
+### p6df-github/lib/ext/ruleset-branch.sh
+
+- p6df::modules::github::ext::ruleset::branch(...)
+
 ### p6df-github/lib/ext/tidy.sh
 
 - p6df::modules::github::ext::tidy::all()
@@ -103,10 +107,14 @@
 
 ### p6df-github/lib/util.sh
 
+- p6df::modules::github:::util::ruleset::branch::mine()
 - p6df::modules::github::util::org::admin::show(dir)
 - p6df::modules::github::util::org::archive(dir)
 - p6df::modules::github::util::org::name::sanity(dir, dir)
 - p6df::modules::github::util::org::name::sanity(dir, dir)
+- p6df::modules::github::util::org::ruleset::branch::default::activate(dir)
+- p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
+- p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
 - p6df::modules::github::util::org::unarchive(dir)
 - p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
 - p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])
@@ -131,15 +139,13 @@
 │   │   ├── label.sh
 │   │   ├── parallel.sh
 │   │   ├── permissions.sh
+│   │   ├── ruleset-branch.sh
 │   │   ├── tidy.sh
 │   │   └── topics.sh
 │   └── util.sh
-├── README.md
-└── share
-    └── gh
-        └── state.yml
+└── README.md
 
-7 directories, 17 files
+5 directories, 17 files
 ```
 
 ## Author
