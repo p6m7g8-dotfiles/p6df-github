@@ -25,11 +25,10 @@ p6df::modules::github::deps() {
 p6df::modules::github::vscodes() {
 
   code --install-extension eamodio.gitlens
-  code --install-extension gimenete.github-linker
-  code --install-extension GitHub.vscode-codeql
-  code --install-extension GitHub.vscode-pull-request-github
+  code --install-extension github.vscode-pull-request-github
   code --install-extension github.vscode-github-actions
-  code --install-extension GitHub.copilot
+  code --install-extension github.vscode-codeql
+  code --install-extension github.copilot
 
   p6_return_void
 }
