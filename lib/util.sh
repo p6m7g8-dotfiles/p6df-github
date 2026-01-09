@@ -121,7 +121,6 @@ p6df::modules::github::util::org::workflow::upgrade-main::run() {
   done
 
   p6_return_void
-
 }
 
 ######################################################################
@@ -159,7 +158,6 @@ _admin_show() {
 
     p6_return_void
 }
-
 
 ######################################################################
 #<
@@ -207,6 +205,20 @@ p6df::modules::github::util::org::ruleset::branch::default::activate() {
     p6_h1 "$dir/$repo"
     p6_run_dir "$dir/$repo" p6_github_util_ruleset_branch_activate
   done
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::ruleset::branch::default::delete()
+#
+#>
+######################################################################
+p6df::modules::github::util::ruleset::branch::default::delete() {
+
+  p6_github_util_ruleset_branch_delete "default"
 
   p6_return_void
 }
@@ -300,3 +312,29 @@ p6df::modules::github::util::org::ruleset::branch::mine() {
 
   p6_return_void
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::org::ruleset::branch::default::delete(dir)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#
+#  Environment:	 MUST
+#>
+######################################################################
+p6df::modules::github::util::org::ruleset::branch::default::delete() {
+  local dir="$1" # dir MUST also be the org name
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    p6_h1 "$dir/$repo"
+    p6_run_dir "$dir/$repo" p6df::modules::github::util::ruleset::branch::default::delete
+  done
+
+  p6_return_void
+}
+
