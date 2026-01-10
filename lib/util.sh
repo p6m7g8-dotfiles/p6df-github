@@ -250,7 +250,6 @@ p6df::modules::github:::util::ruleset::branch::mine() {
     pull_request.require_code_owner_review=false \
     pull_request.require_last_push_approval=false \
     pull_request.required_review_thread_resolution=true \
-    pull_request.automatic_copilot_code_review_enabled=true \
     pull_request.allowed_merge_methods=squash \
     copilot_code_review=enabled \
     copilot_code_review.review_on_push=true \
