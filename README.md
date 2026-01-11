@@ -114,7 +114,6 @@
 - p6df::modules::github::util::org::ruleset::branch::default::create(dir)
 - p6df::modules::github::util::org::ruleset::branch::default::delete(dir)
 - p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
-- p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
 - p6df::modules::github::util::org::unarchive(dir)
 - p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
 - p6df::modules::github::util::pr::last::view()
