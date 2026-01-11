@@ -36,6 +36,7 @@
 - ghpl IS p6_github_cli_pr_list
 - ghpMl IS p6_github_util_pr_merge_last
 - ghpS IS p6df::modules::github::util::pr::submit
+- ghpv IS p6df::modules::github::util::pr::last::view
 - ghrb IS p6df::modules::github::ext::ruleset::branch
 ### Functions
 
@@ -105,19 +106,21 @@
 
 ### p6df-github/lib/util.sh
 
-- p6df::modules::github:::util::ruleset::branch::mine()
 - p6df::modules::github::util::org::admin::show(dir)
 - p6df::modules::github::util::org::archive(dir)
-- p6df::modules::github::util::org::name::sanity(dir, dir)
-- p6df::modules::github::util::org::name::sanity(dir, dir)
+- p6df::modules::github::util::org::name::sanity(dir)
 - p6df::modules::github::util::org::ruleset::branch::default::activate(dir)
+- p6df::modules::github::util::org::ruleset::branch::default::create(dir)
 - p6df::modules::github::util::org::ruleset::branch::default::delete(dir)
 - p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
 - p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
 - p6df::modules::github::util::org::unarchive(dir)
 - p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
+- p6df::modules::github::util::pr::last::view()
 - p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])
+- p6df::modules::github::util::ruleset::branch::default::create()
 - p6df::modules::github::util::ruleset::branch::default::delete()
+- p6df::modules::github::util::ruleset::branch::mine()
 
 ## Hierarchy
 
