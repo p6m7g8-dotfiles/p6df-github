@@ -229,7 +229,7 @@ p6df::modules::github::util::org::ruleset::branch::mine() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6df::modules::github:::util::ruleset::branch::mine
+    p6_run_dir "$dir/$repo" p6df::modules::github::util::ruleset::branch::mine
   done
 
   p6_return_void
