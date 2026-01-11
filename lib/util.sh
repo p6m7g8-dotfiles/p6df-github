@@ -182,6 +182,7 @@ p6df::modules::github::util::org::ruleset::branch::default::activate() {
   p6_return_void
 }
 
+# shellcheck disable=2329
 ######################################################################
 #<
 #
