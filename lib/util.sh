@@ -335,6 +335,7 @@ p6df::modules::github::util::ruleset::branch::mine() {
     merge_queue.min_entries_to_merge_wait_minutes=5 \
     merge_queue.grouping_strategy=ALLGREEN \
     merge_queue.check_response_timeout_minutes=7 \
+    pull_request=enabled \
     pull_request.required_approving_review_count=1 \
     pull_request.dismiss_stale_reviews_on_push=false \
     pull_request.require_code_owner_review=false \
