@@ -143,6 +143,7 @@ p6df::modules::github::aliases::init() {
   p6_alias "ghpS" "p6df::modules::github::util::pr::submit"
   p6_alias "ghpMl" "p6_github_util_pr_merge_last"
   p6_alias "ghpl" "p6_github_cli_pr_list"
+  p6_alias "ghpc" "p6_github_cli_pr_checkout"
   p6_alias "ghpv" "p6df::modules::github::util::pr::last::view"
 
   # extensions
