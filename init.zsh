@@ -91,7 +91,7 @@ p6df::modules::github::langs::extensions() {
 
   local ext
   for ext in "${extensions[@]}"; do
-    gh extension install "$ext" || print "failed: $ext"
+    gh extension install "$ext" || p6_echo "failed: $ext"
   done
 
   p6_return_void
@@ -189,20 +189,26 @@ p6df::modules::github::init() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::github::prompt::line()
+# Function: str str = p6df::modules::github::prompt::mod()
 #
 #  Returns:
 #	str - str
 #
-#  Environment:	 P6_DFZ_GITHUB_PROMPT
+#  Environment:	 GH_USER P6_DFZ_GITHUB_PROMPT P6_DFZ_PROFILE_GITHUB
 #>
 ######################################################################
-p6df::modules::github::prompt::line() {
+p6df::modules::github::prompt::mod() {
 
   local str
-  if p6_git_util_inside_tree; then
-    if ! p6_string_blank "$P6_DFZ_GITHUB_PROMPT"; then
-      str="github:\t  "
+  if ! p6_string_blank "$P6_DFZ_PROFILE_GITHUB"; then
+    str="github:\t\t  $P6_DFZ_PROFILE_GITHUB:"
+    if ! p6_string_blank "$GH_USER"; then
+      str=$(p6_string_append "$str" "$GH_USER" " ")
+      if p6_git_util_inside_tree; then
+        if ! p6_string_blank "$P6_DFZ_GITHUB_PROMPT"; then
+          str=$(p6_string_append "$str" "- $P6_DFZ_GITHUB_PROMPT" " ")
+        fi
+      fi
     fi
   fi
 

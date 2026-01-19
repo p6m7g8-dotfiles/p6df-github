@@ -103,7 +103,7 @@
 - p6df::modules::github::langs()
 - p6df::modules::github::langs::extensions()
 - p6df::modules::github::vscodes()
-- str str = p6df::modules::github::prompt::line()
+- str str = p6df::modules::github::prompt::mod()
 
 ## p6df-github/lib
 
