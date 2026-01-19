@@ -33,7 +33,9 @@
 - ghepl IS p6df::modules::github::ext::permissions::list
 - gheta IS p6df::modules::github::ext::tidy::all
 - ghetl IS p6df::modules::github::ext::topics::list
+- ghpc IS p6_github_cli_pr_checkout
 - ghpl IS p6_github_cli_pr_list
+- ghplc IS p6df::modules::github::util::pr::last::checkout
 - ghpMl IS p6_github_util_pr_merge_last
 - ghpS IS p6df::modules::github::util::pr::submit
 - ghpv IS p6df::modules::github::util::pr::last::view
@@ -113,9 +115,10 @@
 - p6df::modules::github::util::org::ruleset::branch::default::activate(dir)
 - p6df::modules::github::util::org::ruleset::branch::default::create(dir)
 - p6df::modules::github::util::org::ruleset::branch::default::delete(dir)
-- p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
+- p6df::modules::github::util::org::ruleset::branch::mine(dir)
 - p6df::modules::github::util::org::unarchive(dir)
 - p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
+- p6df::modules::github::util::pr::last::checkout()
 - p6df::modules::github::util::pr::last::view()
 - p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])
 - p6df::modules::github::util::ruleset::branch::default::create()
