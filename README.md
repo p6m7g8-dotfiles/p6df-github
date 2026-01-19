@@ -40,6 +40,7 @@
 - ghpS IS p6df::modules::github::util::pr::submit
 - ghpv IS p6df::modules::github::util::pr::last::view
 - ghrb IS p6df::modules::github::ext::ruleset::branch
+
 ### Functions
 
 ## ext
