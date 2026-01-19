@@ -9,7 +9,7 @@
 #	OPTIONAL pr_num - []
 #	OPTIONAL editor - [$EDITOR]
 #
-#  Environment:	 EDITOR USER
+#  Environment:	 EDITOR P6_DFZ_GITHUB_BRANCH_TMPL P6_DFZ_GITHUB_REVIEWER USER
 #>
 ######################################################################
 p6df::modules::github::util::pr::submit() {
@@ -30,7 +30,6 @@ p6df::modules::github::util::pr::submit() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::archive() {
@@ -50,12 +49,12 @@ p6df::modules::github::util::org::archive() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::util::org::unarchive(dir)
+# Function: p6df::modules::github::util::org::unarchive(dir, dir)
 #
 #  Args:
 #	dir - dir MUST also be the org name
+#	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::unarchive() {
@@ -72,17 +71,6 @@ p6df::modules::github::util::org::unarchive() {
   p6_return_void
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::github::util::org::workflow::upgrade-main::run(dir)
-#
-#  Args:
-#	dir - dir MUST also be the org name
-#
-#  Environment:	 MUST
-#>
-######################################################################
 p6df::modules::github::util::org::workflow::upgrade-main::run() {
   local dir="$1" # dir MUST also be the org name
 
@@ -105,7 +93,6 @@ p6df::modules::github::util::org::workflow::upgrade-main::run() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::admin::show() {
@@ -141,7 +128,6 @@ _admin_show() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::name::sanity() {
@@ -165,7 +151,6 @@ p6df::modules::github::util::org::name::sanity() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::ruleset::branch::default::activate() {
@@ -190,7 +175,6 @@ p6df::modules::github::util::org::ruleset::branch::default::activate() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::ruleset::branch::mine() {
@@ -215,7 +199,6 @@ p6df::modules::github::util::org::ruleset::branch::mine() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::ruleset::branch::default::delete() {
@@ -240,7 +223,6 @@ p6df::modules::github::util::org::ruleset::branch::default::delete() {
 #  Args:
 #	dir - dir MUST also be the org name
 #
-#  Environment:	 MUST
 #>
 ######################################################################
 p6df::modules::github::util::org::ruleset::branch::default::create() {
@@ -290,7 +272,6 @@ p6df::modules::github::util::ruleset::branch::default::create() {
 #
 # Function: p6df::modules::github::util::ruleset::branch::mine()
 #
-#  Environment:	 ALLGREEN DEFAULT_BRANCH SQUASH
 #>
 ######################################################################
 p6df::modules::github::util::ruleset::branch::mine() {
