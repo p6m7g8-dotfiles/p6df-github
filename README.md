@@ -40,7 +40,6 @@
 - ghpS IS p6df::modules::github::util::pr::submit
 - ghpv IS p6df::modules::github::util::pr::last::view
 - ghrb IS p6df::modules::github::ext::ruleset::branch
-
 ### Functions
 
 ## ext
@@ -103,7 +102,7 @@
 - p6df::modules::github::langs()
 - p6df::modules::github::langs::extensions()
 - p6df::modules::github::vscodes()
-- str str = p6df::modules::github::prompt::line()
+- str str = p6df::modules::github::prompt::mod()
 
 ## p6df-github/lib
 
