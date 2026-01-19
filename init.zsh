@@ -145,6 +145,7 @@ p6df::modules::github::aliases::init() {
   p6_alias "ghpl" "p6_github_cli_pr_list"
   p6_alias "ghpc" "p6_github_cli_pr_checkout"
   p6_alias "ghpv" "p6df::modules::github::util::pr::last::view"
+  p6_alias "ghplc" "p6df::modules::github::util::pr::last::checkout"
 
   # extensions
   p6_alias "gheAbd" "p6df::modules::github::ext::alerts::by::dep"      # 1=org

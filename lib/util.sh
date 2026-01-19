@@ -182,40 +182,12 @@ p6df::modules::github::util::org::ruleset::branch::default::activate() {
   p6_return_void
 }
 
-# shellcheck disable=2329
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
+# Function: p6df::modules::github::util::org::ruleset::branch::mine(dir)
 #
 #  Args:
-#	dir - dir MUST also be the org name
-#	dir - dir MUST also be the org name
-#
-#  Environment:	 MUST
-#>
-######################################################################
-p6df::modules::github::util::org::ruleset::branch::mine() {
-  local dir="$1" # dir MUST also be the org name
-
-  local org="$dir"
-
-  local repo
-  for repo in $(p6_dir_list "$dir"); do
-    p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6df::modules::github:::util::ruleset::branch::mine
-  done
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::util::org::ruleset::branch::mine(dir, dir)
-#
-#  Args:
-#	dir - dir MUST also be the org name
 #	dir - dir MUST also be the org name
 #
 #  Environment:	 MUST
@@ -367,3 +339,21 @@ p6df::modules::github::util::pr::last::view() {
 
   p6_return_void
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::util::pr::last::checkout()
+#
+#>
+######################################################################
+p6df::modules::github::util::pr::last::checkout() {
+
+  local pr
+  pr=$(p6_github_util_pr_last)
+
+  p6_github_cli_pr_checkout "$pr"
+
+  p6_return_void
+}
+
