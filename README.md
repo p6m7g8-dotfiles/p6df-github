@@ -114,6 +114,8 @@ TODO: Add a short summary of this module.
 - `p6df::modules::github::init(_module, dir)`
 - `p6df::modules::github::langs()`
 - `p6df::modules::github::langs::extensions()`
+- `p6df::modules::github::profile::off()`
+- `p6df::modules::github::profile::on(profile, my_user, my_token, my_gemini_token)`
 - `p6df::modules::github::vscodes()`
 - `str str = p6df::modules::github::prompt::mod()`
 

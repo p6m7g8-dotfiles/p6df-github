@@ -214,3 +214,53 @@ p6df::modules::github::prompt::mod() {
 
   p6_return_str "$str"
 }
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::profile::on(profile, my_user, my_token, my_gemini_token)
+#
+#  Args:
+#	profile -
+#	my_user -
+#	my_token -
+#	my_gemini_token -
+#
+#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER GITHUB_MCP_PATH HOME P6_DFZ_PROFILE_GITHUB
+#>
+######################################################################
+p6df::modules::github::profile::on() {
+  local profile="$1"
+  local my_user="$2"
+  local my_token="$3"
+  local my_gemini_token="$4"
+
+  p6_env_export "P6_DFZ_PROFILE_GITHUB" "$profile"
+
+  p6_env_export "GH_CONFIG_DIR" "$HOME/.config/gh-${P6_DFZ_PROFILE_GITHUB}"
+  p6_env_export "GH_USER" "$my_user"
+  p6_env_export "GH_TOKEN" "$my_token"
+
+  p6_env_export GITHUB_MCP_PATH "$my_gemini_token"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::profile::off()
+#
+#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER GITHUB_MCP_PATH P6_DFZ_PROFILE_GITHUB
+#>
+######################################################################
+p6df::modules::github::profile::off() {
+
+  p6_env_export_un P6_DFZ_PROFILE_GITHUB
+  p6_env_export_un GH_CONFIG_DIR
+  p6_env_export_un GH_TOKEN
+  p6_env_export_un GH_USER
+  p6_env_export_un GITHUB_MCP_PATH
+
+  p6_return_void
+}
