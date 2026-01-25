@@ -49,10 +49,9 @@ p6df::modules::github::util::org::archive() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::util::org::unarchive(dir, dir)
+# Function: p6df::modules::github::util::org::unarchive(dir)
 #
 #  Args:
-#	dir - dir MUST also be the org name
 #	dir - dir MUST also be the org name
 #
 #>

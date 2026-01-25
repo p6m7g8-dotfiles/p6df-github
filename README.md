@@ -130,7 +130,7 @@ TODO: Add a short summary of this module.
 - `p6df::modules::github::util::org::ruleset::branch::default::create(dir)`
 - `p6df::modules::github::util::org::ruleset::branch::default::delete(dir)`
 - `p6df::modules::github::util::org::ruleset::branch::mine(dir)`
-- `p6df::modules::github::util::org::unarchive(dir, dir)`
+- `p6df::modules::github::util::org::unarchive(dir)`
 - `p6df::modules::github::util::pr::last::checkout()`
 - `p6df::modules::github::util::pr::last::view()`
 - `p6df::modules::github::util::pr::submit(msg, [pr_num=], [editor=$EDITOR])`
