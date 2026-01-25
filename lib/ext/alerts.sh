@@ -30,7 +30,7 @@ p6df::modules::github::ext::alerts() {
 p6df::modules::github::ext::alerts::by::repo() {
     local org="$1"
 
-    p6df::modules::github::ext::alerts "$org" | awk '{print $1}' | sort | uniq -c | sort -nr
+    p6df::modules::github::ext::alerts "$org" | p6_filter_column_pluck 1 | p6_filter_aggregate_map_reduce | p6_filter_sort_numeric_reverse
 
     p6_return_void
 }
@@ -48,7 +48,7 @@ p6df::modules::github::ext::alerts::by::repo() {
 p6df::modules::github::ext::alerts::by::dep() {
     local org="$1"
 
-    p6df::modules::github::ext::alerts "$org" | awk '{print $2}' | sort | uniq -c | sort -nr
+    p6df::modules::github::ext::alerts "$org" | p6_filter_column_pluck 2 | p6_filter_aggregate_map_reduce | p6_filter_sort_numeric_reverse
 
     p6_return_void
 }
@@ -66,7 +66,7 @@ p6df::modules::github::ext::alerts::by::dep() {
 p6df::modules::github::ext::alerts::by::severity() {
     local org="$1"
 
-    p6df::modules::github::ext::alerts "$org" | awk '{print $3}' | sort | uniq -c | sort -nr
+    p6df::modules::github::ext::alerts "$org" | p6_filter_column_pluck 3 | p6_filter_aggregate_map_reduce | p6_filter_sort_numeric_reverse
 
     p6_return_void
 }
@@ -84,7 +84,7 @@ p6df::modules::github::ext::alerts::by::severity() {
 p6df::modules::github::ext::alerts::by::file() {
     local org="$1"
 
-    p6df::modules::github::ext::alerts "$org" | awk '{print $5}' | sort | uniq -c | sort -nr
+    p6df::modules::github::ext::alerts "$org" | p6_filter_column_pluck 5 | p6_filter_aggregate_map_reduce | p6_filter_sort_numeric_reverse
 
     p6_return_void
 }
