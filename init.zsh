@@ -57,8 +57,8 @@ p6df::modules::github::external::yum() {
 ######################################################################
 p6df::modules::github::external::brew() {
 
-  p6df::modules::homebrew::cli::brew::install gh
-  p6df::modules::homebrew::cli::brew::install act
+  p6df::core::homebrew::cli::brew::install gh
+  p6df::core::homebrew::cli::brew::install act
 
   p6_return_void
 }
