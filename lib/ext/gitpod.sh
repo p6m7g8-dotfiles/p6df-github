@@ -5,6 +5,9 @@
 # Function: p6df::modules::github::ext::gitpod::launch()
 #
 #>
+#/ Synopsis
+#/    Launches a Gitpod workspace for the current repository
+#/
 ######################################################################
 p6df::modules::github::ext::gitpod::launch() {
 

@@ -5,6 +5,9 @@
 # Function: p6df::modules::github::ext::label::list()
 #
 #>
+#/ Synopsis
+#/    Lists all labels in the current repository
+#/
 ######################################################################
 p6df::modules::github::ext::label::list() {
 

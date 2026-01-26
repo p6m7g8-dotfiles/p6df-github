@@ -5,6 +5,9 @@
 # Function: p6df::modules::github::ext::tidy::all()
 #
 #>
+#/ Synopsis
+#/    Tidies up branches by rebasing all branches on the trunk branch
+#/
 ######################################################################
 p6df::modules::github::ext::tidy::all() {
 
