@@ -5,6 +5,9 @@
 # Function: p6df::modules::github::ext::topics::list()
 #
 #>
+#/ Synopsis
+#/    Lists all topics for the current repository
+#/
 ######################################################################
 p6df::modules::github::ext::topics::list() {
 

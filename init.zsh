@@ -73,6 +73,9 @@ p6df::modules::github::external::brew() {
 p6df::modules::github::langs::extensions() {
 
   local -a extensions=(
+    p6m7g8/gh-parallel              # mine
+    p6m7g8/gh-repo-mgmt             # mine
+    p6m7g8/gh-ruleset-branch        # mine
     actions/gh-actions-cache        # manage gh action cache
     andyfeller/gh-dependency-report # Tell me about dependencies and licenses
     chelnak/gh-environments         # crud
@@ -83,8 +86,6 @@ p6df::modules::github::langs::extensions() {
     heaths/gh-label                 # label crud
     mislav/gh-repo-collab           # permissions, teams
     mislav/gh-repo-topic            # crud topics
-    p6m7g8/gh-parallel              # mine
-    p6m7g8/gh-ruleset-branch        # mine
     rsese/gh-actions-status         # stuff
     vilmibm/gh-user-status          # status aim crud
   )
@@ -140,13 +141,13 @@ p6df::modules::github::home::symlink() {
 ######################################################################
 p6df::modules::github::aliases::init() {
 
-  p6_alias "ghpS" "p6df::modules::github::util::pr::submit"
-  p6_alias "ghpMl" "p6_github_util_pr_merge_last"
-  p6_alias "ghpMo" "p6_github_util_pr_merge_oldest"
+  p6_alias "ghpS" "p6df::modules::github::api::pr::submit"
+  p6_alias "ghpMl" "p6_github_api_pr_merge_last"
+  p6_alias "ghpMo" "p6_github_api_pr_merge_oldest"
   p6_alias "ghpl" "p6_github_cli_pr_list"
   p6_alias "ghpc" "p6_github_cli_pr_checkout"
-  p6_alias "ghpv" "p6df::modules::github::util::pr::last::view"
-  p6_alias "ghplc" "p6df::modules::github::util::pr::last::checkout"
+  p6_alias "ghpv" "p6df::modules::github::api::pr::last::view"
+  p6_alias "ghplc" "p6df::modules::github::api::pr::last::checkout"
 
   # extensions
   p6_alias "gheAbd" "p6df::modules::github::ext::alerts::by::dep"      # 1=org
