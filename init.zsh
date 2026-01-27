@@ -24,11 +24,34 @@ p6df::modules::github::deps() {
 ######################################################################
 p6df::modules::github::vscodes() {
 
-  code --install-extension eamodio.gitlens
-  code --install-extension github.vscode-pull-request-github
-  code --install-extension github.vscode-github-actions
-  code --install-extension github.vscode-codeql
-  code --install-extension github.copilot
+  p6df::modules::vscode::extension::install eamodio.gitlens
+  p6df::modules::vscode::extension::install github.vscode-pull-request-github
+  p6df::modules::vscode::extension::install github.vscode-github-actions
+  p6df::modules::vscode::extension::install github.vscode-codeql
+  p6df::modules::vscode::extension::install github.copilot
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: str json = p6df::modules::github::vscodes::config()
+#
+#  Returns:
+#	str - json
+#
+#>
+######################################################################
+p6df::modules::github::vscodes::config() {
+
+  cat <<'EOF'
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.codingAgent.codeLens": false
+EOF
 
   p6_return_void
 }
