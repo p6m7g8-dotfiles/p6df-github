@@ -225,12 +225,12 @@ p6df::modules::github::init() {
 p6df::modules::github::prompt::mod() {
 
   local str
-  if ! p6_string_blank "$P6_DFZ_PROFILE_GITHUB"; then
+  if p6_string_blank_NOT "$P6_DFZ_PROFILE_GITHUB"; then
     str="github:\t\t  $P6_DFZ_PROFILE_GITHUB:"
-    if ! p6_string_blank "$GH_USER"; then
+    if p6_string_blank_NOT "$GH_USER"; then
       str=$(p6_string_append "$str" "$GH_USER" " ")
       if p6_git_util_inside_tree; then
-        if ! p6_string_blank "$P6_DFZ_GITHUB_PROMPT"; then
+        if p6_string_blank_NOT "$P6_DFZ_GITHUB_PROMPT"; then
           str=$(p6_string_append "$str" "- $P6_DFZ_GITHUB_PROMPT" " ")
         fi
       fi
