@@ -2,14 +2,14 @@
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::api::ruleset::branch::default::delete()
+# Function: p6df::modules::github::util::ruleset::branch::default::delete()
 #
 #>
 #/ Synopsis
 #/    Deletes the default branch ruleset for the current repository
 #/
 ######################################################################
-p6df::modules::github::api::ruleset::branch::default::delete() {
+p6df::modules::github::util::ruleset::branch::default::delete() {
 
   p6df::modules::github::ext::ruleset::branch delete default
 
@@ -19,14 +19,14 @@ p6df::modules::github::api::ruleset::branch::default::delete() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::api::ruleset::branch::default::create()
+# Function: p6df::modules::github::util::ruleset::branch::default::create()
 #
 #>
 #/ Synopsis
 #/    Creates the default branch ruleset for the current repository
 #/
 ######################################################################
-p6df::modules::github::api::ruleset::branch::default::create() {
+p6df::modules::github::util::ruleset::branch::default::create() {
 
   p6df::modules::github::ext::ruleset::branch create default
 
@@ -36,14 +36,14 @@ p6df::modules::github::api::ruleset::branch::default::create() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::api::ruleset::branch::mine()
+# Function: p6df::modules::github::util::ruleset::branch::mine()
 #
 #>
 #/ Synopsis
 #/    Applies custom branch ruleset configuration with merge queue, PR requirements, and Copilot code review
 #/
 ######################################################################
-p6df::modules::github::api::ruleset::branch::mine() {
+p6df::modules::github::util::ruleset::branch::mine() {
 
   p6df::modules::github::ext::ruleset::branch update default \
     deletion=enabled \
