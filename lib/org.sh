@@ -20,7 +20,7 @@ p6df::modules::github::org::archive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_api_repo_archive
+    p6_run_dir "$dir/$repo" p6_github_util_repo_archive
   done
 
   p6_return_void
@@ -47,7 +47,7 @@ p6df::modules::github::org::unarchive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_api_repo_unarchive
+    p6_run_dir "$dir/$repo" p6_github_util_repo_unarchive
   done
 
   p6_return_void
@@ -74,7 +74,7 @@ p6df::modules::github::org::workflow::upgrade_main::run() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_api_repo_workflow_upgrade_main_run
+    p6_run_dir "$dir/$repo" p6_github_util_repo_workflow_upgrade_main_run
   done
 
   p6_return_void
@@ -148,7 +148,7 @@ p6df::modules::github::org::name::sanity() {
 
   local repo
   for repo in $(p6_dir_list "$dir"); do
-    p6_github_api_repo_rename_strip_leading_underscores "$org/$repo"
+    p6_github_util_repo_rename_strip_leading_underscores "$org/$repo"
   done
 
   p6_return_void
@@ -175,7 +175,7 @@ p6df::modules::github::org::ruleset::branch::default::activate() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_api_ruleset_branch_activate
+    p6_run_dir "$dir/$repo" p6_github_util_ruleset_branch_activate
   done
 
   p6_return_void
@@ -202,7 +202,7 @@ p6df::modules::github::org::ruleset::branch::mine() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6df::modules::github::api::ruleset::branch::mine
+    p6_run_dir "$dir/$repo" p6df::modules::github::util::ruleset::branch::mine
   done
 
   p6_return_void
@@ -229,7 +229,7 @@ p6df::modules::github::org::ruleset::branch::default::delete() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6df::modules::github::api::ruleset::branch::default::delete
+    p6_run_dir "$dir/$repo" p6df::modules::github::util::ruleset::branch::default::delete
   done
 
   p6_return_void
@@ -256,7 +256,7 @@ p6df::modules::github::org::ruleset::branch::default::create() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6df::modules::github::api::ruleset::branch::default::create
+    p6_run_dir "$dir/$repo" p6df::modules::github::util::ruleset::branch::default::create
   done
 
   p6_return_void
