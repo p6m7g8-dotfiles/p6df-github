@@ -168,21 +168,55 @@ p6df::modules::github::aliases::init() {
   p6_alias "ghpv"  "p6df::modules::github::util::pr::last::view"
   p6_alias "ghplc" "p6df::modules::github::util::pr::last::checkout"
 
-  # extensions
+  # p6m7g8/gh-parallel
+  p6_alias "ghePc"  "p6df::modules::github::ext::parallel::clone"      # 1=org 2=dir
+
+  # p6m7g8/gh-ruleset-branch
+  p6_alias "gherb"   "p6df::modules::github::ext::ruleset::branch"      # varying args
+
+  # actions/gh-actions-cache
+  p6_alias "gheacl" "p6df::modules::github::ext::actions::cache::list" # in dir
+
+  # andyfeller/gh-dependency-report
+  p6_alias "ghedr"  "p6df::modules::github::ext::dependencies::report" # 1=org_repo
+
+  # chelnak/gh-environments
+  p6_alias "gheel"  "p6df::modules::github::ext::environments::list"   # in dir
+  p6_alias "gheec"  "p6df::modules::github::ext::environments::create" # 1=name
+  p6_alias "gheed"  "p6df::modules::github::ext::environments::delete" # 1=name
+
+  # cschleiden/gh-actionlint
+  p6_alias "gheal"  "p6df::modules::github::ext::action::lint"         # in dir
+
+  # davidraviv/gh-clean-branches
+  p6_alias "ghecb"  "p6df::modules::github::ext::clean::branches"      # in dir
+  p6_alias "ghecbd" "p6df::modules::github::ext::clean::branches::dry" # in dir
+
+  # ericwb/gh-alerts
   p6_alias "gheAbd" "p6df::modules::github::ext::alerts::by::dep"      # 1=org
   p6_alias "gheAbf" "p6df::modules::github::ext::alerts::by::file"     # 1=org
   p6_alias "gheAbs" "p6df::modules::github::ext::alerts::by::severity" # 1=org
   p6_alias "gheAby" "p6df::modules::github::ext::alerts::by::repo"     # 1=org
-  p6_alias "gheacl" "p6df::modules::github::ext::actions::cache::list" # in dir
-  p6_alias "gheal"  "p6df::modules::github::ext::action::lint"         # 1=org
-  p6_alias "ghedr"  "p6df::modules::github::ext::dependencies::report" # 1=org_repo
+
+  # gitpod-io/gh-gp
   p6_alias "ghegpl" "p6df::modules::github::ext::gitpod::launch"       # in dir
-  p6_alias "ghell"  "p6df::modules::github::ext::label::list"          # in dir
-  p6_alias "ghePc"  "p6df::modules::github::ext::parallel::clone"      # 1=org 2=dir
-  p6_alias "ghrb"   "p6df::modules::github::ext::ruleset::branch"      # varying args
-  p6_alias "ghepl"  "p6df::modules::github::ext::permissions::list"    # in dir
+
+  # HaywardMorihara/gh-tidy
   p6_alias "gheta"  "p6df::modules::github::ext::tidy::all"            # in dir
+
+  # mislav/gh-repo-collab
+  p6_alias "ghepl"  "p6df::modules::github::ext::permissions::list"    # in dir
+
+  # mislav/gh-repo-topic
   p6_alias "ghetl"  "p6df::modules::github::ext::topics::list"         # in dir
+
+  # rsese/gh-actions-status
+  p6_alias "gheas"  "p6df::modules::github::ext::actions::status"      # in dir
+  p6_alias "gheasw" "p6df::modules::github::ext::actions::status::watch" # in dir
+
+  # srz-zumix/gh-team-kit
+  p6_alias "ghetktl" "p6df::modules::github::ext::team::list"          # 1=org
+  p6_alias "ghetktm" "p6df::modules::github::ext::team::members"       # 1=org 2=team
 
   p6_return_void
 }
