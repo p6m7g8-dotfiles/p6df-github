@@ -20,7 +20,7 @@ p6df::modules::github::org::archive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_util_repo_archive
+    p6_run_dir "$dir/$repo" p6_github_cli_repo_archive
   done
 
   p6_return_void
@@ -47,7 +47,7 @@ p6df::modules::github::org::unarchive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_util_repo_unarchive
+    p6_run_dir "$dir/$repo" p6_github_cli_repo_unarchive
   done
 
   p6_return_void
@@ -74,7 +74,7 @@ p6df::modules::github::org::workflow::upgrade_main::run() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_util_repo_workflow_upgrade_main_run
+    p6_run_dir "$dir/$repo" p6_github_cli_workflow_upgrade_main_run
   done
 
   p6_return_void
@@ -175,7 +175,7 @@ p6df::modules::github::org::ruleset::branch::default::activate() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_util_ruleset_branch_activate
+    p6_run_dir "$dir/$repo" p6_github_cli_ruleset_branch_activate
   done
 
   p6_return_void
