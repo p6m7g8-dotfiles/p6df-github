@@ -36,10 +36,7 @@ p6df::modules::github::vscodes() {
 ######################################################################
 #<
 #
-# Function: str json = p6df::modules::github::vscodes::config()
-#
-#  Returns:
-#	str - json
+# Function: p6df::modules::github::vscodes::config()
 #
 #>
 ######################################################################
@@ -141,7 +138,7 @@ p6df::modules::github::langs() {
 #
 # Function: p6df::modules::github::home::symlink()
 #
-#  Environment:	 GH_TOKEN GH_USER P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::github::home::symlink() {
