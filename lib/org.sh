@@ -20,7 +20,7 @@ p6df::modules::github::org::archive() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_h1 "$dir/$repo"
-    p6_run_dir "$dir/$repo" p6_github_cli_repo_archive
+    p6_run_dir "$dir/$repo" p6_github_cli_repo_archive "$org" "$repo"
   done
 
   p6_return_void
@@ -107,16 +107,6 @@ p6df::modules::github::org::admin::show() {
   p6_return_void
 }
 
-######################################################################
-#<
-#
-# Function: _admin_show()
-#
-#>
-#/ Synopsis
-#/    Internal helper that performs git checkout, pull, status, diff, and lists PRs
-#/
-######################################################################
 _admin_show() {
 
     p6_git_cli_checkout
@@ -138,6 +128,9 @@ _admin_show() {
 #
 #>
 #/ Synopsis
+#/    Internal helper that performs git checkout, pull, status, diff, and lists PRs
+#/
+#/ Synopsis
 #/    Strips leading underscores from all repository names in an organization
 #/
 ######################################################################
@@ -149,6 +142,32 @@ p6df::modules::github::org::name::sanity() {
   local repo
   for repo in $(p6_dir_list "$dir"); do
     p6_github_util_repo_rename_strip_leading_underscores "$org/$repo"
+  done
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::org::visibility(dir, visibility)
+#
+#  Args:
+#	dir - dir MUST also be the org name
+#	visibility -
+#
+#>
+######################################################################
+p6df::modules::github::org::visibility() {
+  local dir="$1" # dir MUST also be the org name
+  local visibility="$2"
+
+  local org="$dir"
+
+  local repo
+  for repo in $(p6_dir_list "$dir"); do
+    p6_h1 "$dir/$repo"
+    p6_run_dir "$dir/$repo" p6_github_cli_repo_visibility_set "$org" "$repo" "$visibility"
   done
 
   p6_return_void
