@@ -43,11 +43,12 @@ p6df::modules::github::vscodes() {
 p6df::modules::github::vscodes::config() {
 
   cat <<'EOF'
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
   "githubPullRequests.pullBranch": "never",
-  "githubPullRequests.codingAgent.codeLens": false
+  "githubPullRequests.codingAgent.codeLens": false,
+  "githubPullRequests.quickDiff": true,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.blame.heatmap.enabled": false
 EOF
 
   p6_return_void
