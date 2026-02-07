@@ -44,7 +44,6 @@ p6df::modules::github::vscodes::config() {
 
   cat <<'EOF'
   "githubPullRequests.pullBranch": "never",
-  "githubPullRequests.codingAgent.codeLens": false,
   "githubPullRequests.quickDiff": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
