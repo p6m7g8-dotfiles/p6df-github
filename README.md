@@ -144,7 +144,7 @@ TODO: Add a short summary of this module.
 - `p6df::modules::github::ext::ruleset::branch(...)`
   - Synopsis: Pass-through wrapper to gh ruleset-branch extension with all arguments
   - Args:
-    - ... - 
+    - ... -
 
 ##### p6df-github/lib/ext/team-kit.sh
 
@@ -179,17 +179,17 @@ TODO: Add a short summary of this module.
 - `p6df::modules::github::home::symlink()`
 - `p6df::modules::github::init(_module, dir)`
   - Args:
-    - _module - 
-    - dir - 
+    - _module -
+    - dir -
 - `p6df::modules::github::langs()`
 - `p6df::modules::github::langs::extensions()`
 - `p6df::modules::github::profile::off()`
 - `p6df::modules::github::profile::on(profile, my_user, my_token, my_gemini_token)`
   - Args:
-    - profile - 
-    - my_user - 
-    - my_token - 
-    - my_gemini_token - 
+    - profile -
+    - my_user -
+    - my_token -
+    - my_gemini_token -
 - `p6df::modules::github::vscodes()`
 - `p6df::modules::github::vscodes::config()`
 - `str str = p6df::modules::github::prompt::mod()`
@@ -207,7 +207,7 @@ TODO: Add a short summary of this module.
   - Args:
     - dir - dir MUST also be the org name
 - `p6df::modules::github::org::name::sanity(dir)`
-  - Synopsis: Internal helper that performs git checkout, pull, status, diff, and lists PRs Strips leading underscores from all repository names in an organization
+  - Synopsis: Internal helper that performs git checkout, pull, status, diff, and lists PRs Strips leading underscores from all repository names in an organization <!-- markdownlint-disable-line MD013 -->
   - Args:
     - dir - dir MUST also be the org name
 - `p6df::modules::github::org::ruleset::branch::default::activate(dir)`
@@ -233,7 +233,7 @@ TODO: Add a short summary of this module.
 - `p6df::modules::github::org::visibility(dir, visibility)`
   - Args:
     - dir - dir MUST also be the org name
-    - visibility - 
+    - visibility -
 - `p6df::modules::github::org::workflow::upgrade_main::run(dir)`
   - Synopsis: Runs the upgrade-main workflow on all repositories in an organization directory
   - Args:
