@@ -185,7 +185,6 @@ and MCP server setup (`github-mcp-server`) with `GITHUB_TOKEN` management.
 - `p6df::modules::github::langs()`
 - `p6df::modules::github::langs::extensions()`
 - `p6df::modules::github::mcp()`
-- `p6df::modules::github::mcp::env()`
 - `p6df::modules::github::profile::off()`
 - `p6df::modules::github::profile::on(profile, my_user, my_token)`
   - Args:
