@@ -138,7 +138,7 @@ p6df::modules::github::langs() {
 #
 # Function: p6df::modules::github::home::symlink()
 #
-#  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#  Environment:	 HOME P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::github::home::symlink() {
@@ -270,30 +270,26 @@ p6df::modules::github::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::profile::on(profile, my_user, my_token, my_gemini_token)
+# Function: p6df::modules::github::profile::on(profile, my_user, my_token)
 #
 #  Args:
 #	profile -
 #	my_user -
 #	my_token -
-#	my_gemini_token -
 #
-#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER GITHUB_MCP_PATH HOME P6_DFZ_PROFILE_GITHUB
+#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER HOME P6_DFZ_PROFILE_GITHUB
 #>
 ######################################################################
 p6df::modules::github::profile::on() {
   local profile="$1"
   local my_user="$2"
   local my_token="$3"
-  local my_gemini_token="$4"
 
   p6_env_export "P6_DFZ_PROFILE_GITHUB" "$profile"
 
   p6_env_export "GH_CONFIG_DIR" "$HOME/.config/gh-${P6_DFZ_PROFILE_GITHUB}"
   p6_env_export "GH_USER" "$my_user"
   p6_env_export "GH_TOKEN" "$my_token"
-
-  p6_env_export GITHUB_MCP_PATH "$my_gemini_token"
 
   p6_return_void
 }
@@ -303,7 +299,7 @@ p6df::modules::github::profile::on() {
 #
 # Function: p6df::modules::github::profile::off()
 #
-#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER GITHUB_MCP_PATH P6_DFZ_PROFILE_GITHUB
+#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER P6_DFZ_PROFILE_GITHUB
 #>
 ######################################################################
 p6df::modules::github::profile::off() {
@@ -312,7 +308,39 @@ p6df::modules::github::profile::off() {
   p6_env_export_un GH_CONFIG_DIR
   p6_env_export_un GH_TOKEN
   p6_env_export_un GH_USER
-  p6_env_export_un GITHUB_MCP_PATH
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::mcp()
+#
+#>
+######################################################################
+p6df::modules::github::mcp() {
+
+  p6df::core::homebrew::cli::brew::install github-mcp-server
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::mcp::env()
+#
+#  Environment:	 GH_TOKEN GITHUB_TOKEN
+#>
+######################################################################
+p6df::modules::github::mcp::env() {
+
+  if p6_string_blank_NOT "$GH_TOKEN"; then
+    p6_env_export "GITHUB_TOKEN" "$GH_TOKEN"
+  else
+    p6_env_export_un "GITHUB_TOKEN"
+  fi
 
   p6_return_void
 }
