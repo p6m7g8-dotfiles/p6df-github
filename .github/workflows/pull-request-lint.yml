@@ -9,12 +9,14 @@ on:
       - reopened
       - ready_for_review
       - edited
-  merge_group:
+  push:
+    branches:
+      - 'gh-readonly-queue/**'
 
 jobs:
   lint:
     name: Lint PR title
-    if: github.event_name != 'merge_group'
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
