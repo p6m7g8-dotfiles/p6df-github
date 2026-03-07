@@ -9,10 +9,12 @@ on:
       - reopened
       - ready_for_review
       - edited
+  merge_group:
 
 jobs:
   lint:
     name: Lint PR title
+    if: github.event_name != 'merge_group'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
