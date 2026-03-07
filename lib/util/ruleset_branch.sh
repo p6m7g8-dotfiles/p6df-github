@@ -40,7 +40,7 @@ p6df::modules::github::util::ruleset::branch::default::create() {
 #
 #>
 #/ Synopsis
-#/    Applies custom branch ruleset configuration with merge queue, PR requirements, and Copilot code review
+#/    Applies custom branch ruleset configuration with merge queue, all required status checks, and PR requirements
 #/
 ######################################################################
 p6df::modules::github::util::ruleset::branch::mine() {
@@ -49,6 +49,14 @@ p6df::modules::github::util::ruleset::branch::mine() {
     deletion=enabled \
     non_fast_forward=enabled \
     required_linear_history=enabled \
+    required_signatures=enabled \
+    required_status_checks=enabled \
+    required_status_checks.strict_required_status_checks_policy=true \
+    required_status_checks.do_not_enforce_on_create=false \
+    required_status_checks.context="build" \
+    required_status_checks.context="claude-review" \
+    required_status_checks.context="codex-review" \
+    required_status_checks.context="Lint PR title" \
     merge_queue=enabled \
     merge_queue.merge_method=SQUASH \
     merge_queue.max_entries_to_build=5 \
