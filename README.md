@@ -209,7 +209,7 @@ and MCP server setup (`github-mcp-server`) with `GITHUB_TOKEN` management.
   - Args:
     - dir - dir MUST also be the org name
 - `p6df::modules::github::org::name::sanity(dir)`
-  - Synopsis: Internal helper that performs git checkout, pull, status, diff, and lists PRs Strips leading underscores f
+  - Synopsis: Strips leading underscores from all repository names in an organization directory
   - Args:
     - dir - dir MUST also be the org name
 - `p6df::modules::github::org::ruleset::branch::default::activate(dir)`

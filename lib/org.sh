@@ -128,10 +128,7 @@ _admin_show() {
 #
 #>
 #/ Synopsis
-#/    Internal helper that performs git checkout, pull, status, diff, and lists PRs
-#/
-#/ Synopsis
-#/    Strips leading underscores from all repository names in an organization
+#/    Strips leading underscores from all repository names in an organization directory
 #/
 ######################################################################
 p6df::modules::github::org::name::sanity() {

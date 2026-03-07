@@ -339,7 +339,7 @@ p6df::modules::github::mcp::env() {
   if p6_string_blank_NOT "$GH_TOKEN"; then
     p6_env_export "GITHUB_TOKEN" "$GH_TOKEN"
   else
-    p6_env_export_un GITHUB_TOKEN
+    p6_env_export_un "GITHUB_TOKEN"
   fi
 
   p6_return_void
