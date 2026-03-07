@@ -184,21 +184,14 @@ and MCP server setup (`github-mcp-server`) with `GITHUB_PERSONAL_ACCESS_TOKEN` m
     - dir
 - `p6df::modules::github::langs()`
 - `p6df::modules::github::langs::extensions()`
-- `p6df::modules::github::mcp(_module, dir)`
-  - Args:
-    - _module
-    - dir
-- `p6df::modules::github::mcp::env(_module, dir)`
-  - Args:
-    - _module
-    - dir
+- `p6df::modules::github::mcp()`
+- `p6df::modules::github::mcp::env()`
 - `p6df::modules::github::profile::off()`
-- `p6df::modules::github::profile::on(profile, my_user, my_token, my_gemini_token)`
+- `p6df::modules::github::profile::on(profile, my_user, my_token)`
   - Args:
     - profile
     - my_user
     - my_token
-    - my_gemini_token
 - `p6df::modules::github::vscodes()`
 - `p6df::modules::github::vscodes::config()`
 - `str str = p6df::modules::github::prompt::mod()`
