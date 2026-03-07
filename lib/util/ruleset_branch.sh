@@ -40,7 +40,7 @@ p6df::modules::github::util::ruleset::branch::default::create() {
 #
 #>
 #/ Synopsis
-#/    Applies custom branch ruleset configuration with merge queue, all required status checks, and PR requirements
+#/    Applies custom branch ruleset configuration with merge queue, required status checks (build, claude-review, codex-review, Lint PR title), and PR requirements
 #/
 ######################################################################
 p6df::modules::github::util::ruleset::branch::mine() {
