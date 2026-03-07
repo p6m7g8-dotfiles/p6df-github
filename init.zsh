@@ -331,17 +331,15 @@ p6df::modules::github::mcp() {
 #
 # Function: p6df::modules::github::mcp::env()
 #
-#  Environment:	 GH_TOKEN GITHUB_MCP_PATH GITHUB_PERSONAL_ACCESS_TOKEN
+#  Environment:	 GH_TOKEN GITHUB_TOKEN
 #>
 ######################################################################
 p6df::modules::github::mcp::env() {
 
   if p6_string_blank_NOT "$GH_TOKEN"; then
-    p6_env_export "GITHUB_PERSONAL_ACCESS_TOKEN" "$GH_TOKEN"
-    p6_env_export "GITHUB_MCP_PATH" "$(command -v github-mcp-server)"
+    p6_env_export "GITHUB_TOKEN" "$GH_TOKEN"
   else
-    p6_env_export_un GITHUB_PERSONAL_ACCESS_TOKEN
-    p6_env_export_un GITHUB_MCP_PATH
+    p6_env_export_un GITHUB_TOKEN
   fi
 
   p6_return_void

@@ -19,7 +19,7 @@
 ## Summary
 
 p6df module for GitHub: gh CLI aliases, PR workflows, profile switching,
-and MCP server setup (`github-mcp-server`) with `GITHUB_PERSONAL_ACCESS_TOKEN` management.
+and MCP server setup (`github-mcp-server`) with `GITHUB_TOKEN` management.
 
 ## Contributing
 
