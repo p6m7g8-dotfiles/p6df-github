@@ -2,7 +2,9 @@ name: Codex Code Review
 on:
   pull_request:
     types: [opened, ready_for_review, synchronize]
-  merge_group:
+  push:
+    branches:
+      - 'gh-readonly-queue/**'
 
 permissions:
   contents: read
