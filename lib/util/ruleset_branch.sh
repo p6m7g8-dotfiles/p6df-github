@@ -56,8 +56,6 @@ p6df::modules::github::util::ruleset::branch::mine() {
     required_status_checks.context="build" \
     required_status_checks.context="claude-review" \
     required_status_checks.context="codex-review" \
-    required_status_checks.context="Auto-Approve PR" \
-    required_status_checks.context="Label PR based on files changed" \
     required_status_checks.context="Lint PR title" \
     merge_queue=enabled \
     merge_queue.merge_method=SQUASH \
