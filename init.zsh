@@ -321,7 +321,7 @@ p6df::modules::github::profile::off() {
 ######################################################################
 p6df::modules::github::mcp() {
 
-  p6df::core::homebrew::cli::brew::install github-mcp-server
+  p6_js_npm_global_install "@modelcontextprotocol/server-github"
 
   p6_return_void
 }

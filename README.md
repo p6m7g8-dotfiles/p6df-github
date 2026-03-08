@@ -18,8 +18,9 @@
 
 ## Summary
 
-p6df module for GitHub: gh CLI aliases, PR workflows, profile switching,
-and MCP server setup (`github-mcp-server`) with `GITHUB_TOKEN` management.
+p6df module for GitHub: CLI tools (`gh`), branch ruleset management,
+MCP server (`@modelcontextprotocol/server-github` via npm), and copilot
+code review disabled by default in branch rulesets.
 
 ## Contributing
 
@@ -262,7 +263,7 @@ and MCP server setup (`github-mcp-server`) with `GITHUB_TOKEN` management.
 - `p6df::modules::github::util::ruleset::branch::default::delete()`
   - Synopsis: Deletes the default branch ruleset for the current repository
 - `p6df::modules::github::util::ruleset::branch::mine()`
-  - Synopsis: Applies custom branch ruleset configuration with merge queue, PR requirements, and Copilot code review
+  - Synopsis: Applies custom branch ruleset configuration with merge queue, required status checks (build, claude-review, codex-review, Lint PR title), and PR requirements
 
 ## Hierarchy
 
