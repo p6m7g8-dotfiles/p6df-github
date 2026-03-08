@@ -263,7 +263,8 @@ code review disabled by default in branch rulesets.
 - `p6df::modules::github::util::ruleset::branch::default::delete()`
   - Synopsis: Deletes the default branch ruleset for the current repository
 - `p6df::modules::github::util::ruleset::branch::mine()`
-  - Synopsis: Applies custom branch ruleset configuration with merge queue, required status checks (build, claude-review, codex-review, Lint PR title), and PR requirements
+  - Synopsis: Applies custom branch ruleset configuration with merge queue, required status checks
+    (build, claude-review, codex-review, Lint PR title), and PR requirements
 
 ## Hierarchy
 
