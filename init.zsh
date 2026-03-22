@@ -12,6 +12,7 @@ p6df::modules::github::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6github
     p6m7g8-dotfiles/p6df-git
+    ahmedasmar/devops-claude-skills:ci-cd
   )
 }
 
