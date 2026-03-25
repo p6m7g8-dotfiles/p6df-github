@@ -152,6 +152,25 @@ p6df::modules::github::home::symlink() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::github::home::symlinks()
+#
+#  Environment:	 HOME P6_DFZ_SRC_DIR
+#>
+######################################################################
+p6df::modules::github::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_DIR/ahmedasmar/devops-claude-skills/ci-cd"                                                    "$HOME/.claude/skills/ci-cd"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-generator"          "$HOME/.claude/skills/github-actions-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-validator"          "$HOME/.claude/skills/github-actions-validator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-generator"               "$HOME/.claude/skills/gitlab-ci-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-validator"               "$HOME/.claude/skills/gitlab-ci-validator"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::github::aliases::init()
 #
 #>
