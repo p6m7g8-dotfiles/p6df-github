@@ -276,10 +276,15 @@ p6df::modules::github::prompt::mod() {
     str="github:\t\t  $P6_DFZ_PROFILE_GITHUB:"
     if p6_string_blank_NOT "$GH_USER"; then
       str=$(p6_string_append "$str" "$GH_USER" " ")
-      if p6_git_util_inside_tree; then
-        if p6_string_blank_NOT "$P6_DFZ_GITHUB_PROMPT"; then
-          str=$(p6_string_append "$str" "- $P6_DFZ_GITHUB_PROMPT" " ")
-        fi
+    fi
+    if p6_string_blank_NOT "$GH_TOKEN$GITHUB_TOKEN"; then
+      str=$(p6_string_append "$str" "token" " ")
+    else
+      str=$(p6_string_append "$str" "oauth" " ")
+    fi
+    if p6_git_util_inside_tree; then
+      if p6_string_blank_NOT "$P6_DFZ_GITHUB_PROMPT"; then
+        str=$(p6_string_append "$str" "- $P6_DFZ_GITHUB_PROMPT" " ")
       fi
     fi
   fi
@@ -290,26 +295,22 @@ p6df::modules::github::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::profile::on(profile, my_user, my_token)
+# Function: p6df::modules::github::profile::on(profile, code)
 #
 #  Args:
 #	profile -
-#	my_user -
-#	my_token -
+#	code - shell code block (export GH_USER=... GH_TOKEN=...)
 #
 #  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER HOME P6_DFZ_PROFILE_GITHUB
 #>
 ######################################################################
 p6df::modules::github::profile::on() {
   local profile="$1"
-  local my_user="$2"
-  local my_token="$3"
+  local code="$2"
+
+  p6_run_code "$code"
 
   p6_env_export "P6_DFZ_PROFILE_GITHUB" "$profile"
-
-  p6_env_export "GH_CONFIG_DIR" "$HOME/.config/gh-${P6_DFZ_PROFILE_GITHUB}"
-  p6_env_export "GH_USER" "$my_user"
-  p6_env_export "GH_TOKEN" "$my_token"
 
   p6_return_void
 }
@@ -317,17 +318,19 @@ p6df::modules::github::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::profile::off()
+# Function: p6df::modules::github::profile::off(code)
+#
+#  Args:
+#	code - shell code block previously passed to profile::on
 #
 #  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER P6_DFZ_PROFILE_GITHUB
 #>
 ######################################################################
 p6df::modules::github::profile::off() {
+  local code="$1"
 
+  p6_env_unset_from_code "$code"
   p6_env_export_un P6_DFZ_PROFILE_GITHUB
-  p6_env_export_un GH_CONFIG_DIR
-  p6_env_export_un GH_TOKEN
-  p6_env_export_un GH_USER
 
   p6_return_void
 }
