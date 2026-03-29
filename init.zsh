@@ -29,7 +29,6 @@ p6df::modules::github::vscodes() {
   p6df::modules::vscode::extension::install github.vscode-pull-request-github
   p6df::modules::vscode::extension::install github.vscode-github-actions
   p6df::modules::vscode::extension::install github.vscode-codeql
-  p6df::modules::vscode::extension::install github.copilot
 
   p6_return_void
 }
@@ -72,11 +71,11 @@ p6df::modules::github::external::yum() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::external::brew()
+# Function: p6df::modules::github::external::brews()
 #
 #>
 ######################################################################
-p6df::modules::github::external::brew() {
+p6df::modules::github::external::brews() {
 
   p6df::core::homebrew::cli::brew::install gh
   p6df::core::homebrew::cli::brew::install act
