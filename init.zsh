@@ -136,27 +136,14 @@ p6df::modules::github::langs() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::home::symlink()
-#
-#  Environment:	 HOME P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-p6df::modules::github::home::symlink() {
-
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" "$HOME/.actrc"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::github::home::symlinks()
 #
-#  Environment:	 HOME P6_DFZ_SRC_DIR
+#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::github::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" "$HOME/.actrc"
 
   p6_file_symlink "$P6_DFZ_SRC_DIR/ahmedasmar/devops-claude-skills/ci-cd"                                                    "$HOME/.claude/skills/ci-cd"
   p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-generator"          "$HOME/.claude/skills/github-actions-generator"
