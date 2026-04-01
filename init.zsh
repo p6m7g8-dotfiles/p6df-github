@@ -56,21 +56,6 @@ EOF
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::external::yum()
-#
-#>
-######################################################################
-p6df::modules::github::external::yum() {
-
-  wget https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_linux_amd64.tar.gz
-  sudo mv gh_2.45.0_linux_amd64/bin/gh /usr/bin/gh
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::github::external::brews()
 #
 #>
@@ -163,6 +148,8 @@ p6df::modules::github::home::symlinks() {
 ######################################################################
 p6df::modules::github::aliases::init() {
 
+  local _module="$1"
+  local _dir="$2"
   p6_alias "ghpS"  "p6df::modules::github::util::pr::submit"
   p6_alias "ghpMl" "p6_github_util_pr_merge_last"
   p6_alias "ghpMo" "p6_github_util_pr_merge_oldest"
@@ -227,103 +214,6 @@ p6df::modules::github::aliases::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::init(_module, dir)
-#
-#  Args:
-#	_module -
-#	dir -
-#
-#>
-######################################################################
-p6df::modules::github::init() {
-  local _module="$1"
-  local dir="$2"
-
-  p6_bootstrap "$dir"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: str str = p6df::modules::github::prompt::mod()
-#
-#  Returns:
-#	str - str
-#
-#  Environment:	 GH_USER P6_DFZ_GITHUB_PROMPT P6_DFZ_PROFILE_GITHUB
-#>
-######################################################################
-p6df::modules::github::prompt::mod() {
-
-  local str
-  if p6_string_blank_NOT "$P6_DFZ_PROFILE_GITHUB"; then
-    str="github:\t\t  $P6_DFZ_PROFILE_GITHUB:"
-    if p6_string_blank_NOT "$GH_USER"; then
-      str=$(p6_string_append "$str" "$GH_USER" " ")
-    fi
-    if p6_string_blank_NOT "$GH_TOKEN$GITHUB_TOKEN"; then
-      str=$(p6_string_append "$str" "token" " ")
-    else
-      str=$(p6_string_append "$str" "oauth" " ")
-    fi
-    if p6_git_util_inside_tree; then
-      if p6_string_blank_NOT "$P6_DFZ_GITHUB_PROMPT"; then
-        str=$(p6_string_append "$str" "- $P6_DFZ_GITHUB_PROMPT" " ")
-      fi
-    fi
-  fi
-
-  p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::profile::on(profile, code)
-#
-#  Args:
-#	profile -
-#	code - shell code block (export GH_USER=... GH_TOKEN=...)
-#
-#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER HOME P6_DFZ_PROFILE_GITHUB
-#>
-######################################################################
-p6df::modules::github::profile::on() {
-  local profile="$1"
-  local code="$2"
-
-  p6_run_code "$code"
-
-  p6_env_export "P6_DFZ_PROFILE_GITHUB" "$profile"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::profile::off(code)
-#
-#  Args:
-#	code - shell code block previously passed to profile::on
-#
-#  Environment:	 GH_CONFIG_DIR GH_TOKEN GH_USER P6_DFZ_PROFILE_GITHUB
-#>
-######################################################################
-p6df::modules::github::profile::off() {
-  local code="$1"
-
-  p6_env_unset_from_code "$code"
-  p6_env_export_un P6_DFZ_PROFILE_GITHUB
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::github::mcp()
 #
 #>
@@ -334,3 +224,20 @@ p6df::modules::github::mcp() {
 
   p6_return_void
 }
+
+######################################################################
+#<
+#
+# Function: words github $GH_HOST = p6df::modules::github::profile::mod()
+#
+#  Returns:
+#	words - github $GH_HOST
+#
+#  Environment:	 GH_HOST
+#>
+######################################################################
+p6df::modules::github::profile::mod() {
+
+  p6_return_words 'github' "$GH_HOST"
+}
+
