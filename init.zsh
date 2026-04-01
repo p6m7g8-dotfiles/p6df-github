@@ -238,6 +238,6 @@ p6df::modules::github::mcp() {
 ######################################################################
 p6df::modules::github::profile::mod() {
 
-  p6_return_words 'github' "$"
+  p6_return_words 'github' "$GH_HOST"
 }
 
