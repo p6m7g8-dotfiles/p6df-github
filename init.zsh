@@ -1,5 +1,11 @@
 # shellcheck shell=bash
 ######################################################################
+#<
+#
+# Function: p6df::modules::github::deps()
+#
+#>
+######################################################################
 p6df::modules::github::deps() {
 
   # shellcheck disable=2034
@@ -10,6 +16,12 @@ p6df::modules::github::deps() {
   )
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::github::aliases::init()
+#
+#>
 ######################################################################
 p6df::modules::github::aliases::init() {
 
@@ -77,6 +89,13 @@ p6df::modules::github::aliases::init() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::github::home::symlinks()
+#
+#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#>
+######################################################################
 p6df::modules::github::home::symlinks() {
 
   p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" "$HOME/.actrc"
@@ -91,6 +110,12 @@ p6df::modules::github::home::symlinks() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::github::external::brews()
+#
+#>
+######################################################################
 p6df::modules::github::external::brews() {
 
   p6df::core::homebrew::cli::brew::install gh
@@ -100,6 +125,12 @@ p6df::modules::github::external::brews() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::github::langs()
+#
+#>
+######################################################################
 p6df::modules::github::langs() {
 
   p6df::modules::github::langs::extensions
@@ -108,6 +139,12 @@ p6df::modules::github::langs() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::github::mcp()
+#
+#>
+######################################################################
 p6df::modules::github::mcp() {
 
   p6_js_npm_global_install "@modelcontextprotocol/server-github"
@@ -115,6 +152,12 @@ p6df::modules::github::mcp() {
   p6_return_void
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::github::vscodes()
+#
+#>
 ######################################################################
 p6df::modules::github::vscodes() {
 
@@ -126,6 +169,12 @@ p6df::modules::github::vscodes() {
   p6_return_void
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::github::vscodes::config()
+#
+#>
 ######################################################################
 p6df::modules::github::vscodes::config() {
 
@@ -141,35 +190,21 @@ EOF
 }
 
 ######################################################################
+#<
+#
+# Function: words github $GH_HOST = p6df::modules::github::profile::mod()
+#
+#  Returns:
+#	words - github $GH_HOST
+#
+#  Environment:	 GH_HOST
+#>
+######################################################################
 p6df::modules::github::profile::mod() {
 
   p6_return_words 'github' '$GH_HOST'
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::github::deps()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::vscodes()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::vscodes::config()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::external::brews()
-#
-#>
 ######################################################################
 #<
 #
@@ -206,38 +241,3 @@ p6df::modules::github::langs::extensions() {
   p6_return_void
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::github::langs()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::home::symlinks()
-#
-#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::aliases::init()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::github::mcp()
-#
-#>
-######################################################################
-#<
-#
-# Function: words github $GH_HOST = p6df::modules::github::profile::mod()
-#
-#  Returns:
-#	words - github $GH_HOST
-#
-#  Environment:	 GH_HOST
-#>
