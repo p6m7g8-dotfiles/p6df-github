@@ -19,7 +19,11 @@ p6df::modules::github::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::github::aliases::init()
+# Function: p6df::modules::github::aliases::init(_module, _dir)
+#
+#  Args:
+#	_module -
+#	_dir -
 #
 #>
 ######################################################################
@@ -192,10 +196,10 @@ EOF
 ######################################################################
 #<
 #
-# Function: words github $GH_HOST = p6df::modules::github::profile::mod()
+# Function: words github = p6df::modules::github::profile::mod()
 #
 #  Returns:
-#	words - github $GH_HOST
+#	words - github
 #
 #  Environment:	 GH_HOST
 #>

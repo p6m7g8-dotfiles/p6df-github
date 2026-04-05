@@ -18,9 +18,7 @@
 
 ## Summary
 
-p6df module for GitHub: CLI tools (`gh`), branch ruleset management,
-MCP server (`@modelcontextprotocol/server-github` via npm), and copilot
-code review disabled by default in branch rulesets.
+TODO: Add a short summary of this module.
 
 ## Contributing
 
@@ -174,27 +172,19 @@ code review disabled by default in branch rulesets.
 
 ##### p6df-github/init.zsh
 
-- `p6df::modules::github::aliases::init()`
-- `p6df::modules::github::deps()`
-- `p6df::modules::github::external::brew()`
-- `p6df::modules::github::external::yum()`
-- `p6df::modules::github::home::symlink()`
-- `p6df::modules::github::init(_module, dir)`
+- `p6df::modules::github::aliases::init(_module, _dir)`
   - Args:
     - _module
-    - dir
+    - _dir
+- `p6df::modules::github::deps()`
+- `p6df::modules::github::external::brews()`
+- `p6df::modules::github::home::symlinks()`
 - `p6df::modules::github::langs()`
 - `p6df::modules::github::langs::extensions()`
 - `p6df::modules::github::mcp()`
-- `p6df::modules::github::profile::off()`
-- `p6df::modules::github::profile::on(profile, my_user, my_token)`
-  - Args:
-    - profile
-    - my_user
-    - my_token
 - `p6df::modules::github::vscodes()`
 - `p6df::modules::github::vscodes::config()`
-- `str str = p6df::modules::github::prompt::mod()`
+- `words github = p6df::modules::github::profile::mod()`
 
 #### p6df-github/lib
 
@@ -263,8 +253,7 @@ code review disabled by default in branch rulesets.
 - `p6df::modules::github::util::ruleset::branch::default::delete()`
   - Synopsis: Deletes the default branch ruleset for the current repository
 - `p6df::modules::github::util::ruleset::branch::mine()`
-  - Synopsis: Applies custom branch ruleset configuration with merge queue, required status checks
-    (build, claude-review, codex-review, Lint PR title), and PR requirements
+  - Synopsis: Applies custom branch ruleset configuration with merge queue, required status checks (build, claude-review
 
 ## Hierarchy
 
@@ -275,6 +264,8 @@ code review disabled by default in branch rulesets.
 │   └── gh
 │       ├── config.yml
 │       └── hosts.yml.in
+├── docs
+│   └── PR.md
 ├── init.zsh
 ├── lib
 │   ├── ext
@@ -298,7 +289,7 @@ code review disabled by default in branch rulesets.
 │       └── ruleset_branch.sh
 └── README.md
 
-6 directories, 22 files
+7 directories, 23 files
 ```
 
 ## Author
