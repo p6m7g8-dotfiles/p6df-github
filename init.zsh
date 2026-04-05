@@ -1,11 +1,5 @@
 # shellcheck shell=bash
 ######################################################################
-#<
-#
-# Function: p6df::modules::github::deps()
-#
-#>
-######################################################################
 p6df::modules::github::deps() {
 
   # shellcheck disable=2034
@@ -16,135 +10,6 @@ p6df::modules::github::deps() {
   )
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::github::vscodes()
-#
-#>
-######################################################################
-p6df::modules::github::vscodes() {
-
-  p6df::modules::vscode::extension::install eamodio.gitlens
-  p6df::modules::vscode::extension::install github.vscode-pull-request-github
-  p6df::modules::vscode::extension::install github.vscode-github-actions
-  p6df::modules::vscode::extension::install github.vscode-codeql
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::vscodes::config()
-#
-#>
-######################################################################
-p6df::modules::github::vscodes::config() {
-
-  cat <<'EOF'
-  "githubPullRequests.pullBranch": "never",
-  "githubPullRequests.quickDiff": true,
-  "gitlens.codeLens.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.blame.heatmap.enabled": false
-EOF
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::external::brews()
-#
-#>
-######################################################################
-p6df::modules::github::external::brews() {
-
-  p6df::core::homebrew::cli::brew::install gh
-  p6df::core::homebrew::cli::brew::install act
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::langs::extensions()
-#
-#>
-######################################################################
-p6df::modules::github::langs::extensions() {
-
-  local -a extensions=(
-    # p6m7g8/gh-parallel              # mine
-    # p6m7g8/gh-repo-mgmt             # mine
-    # p6m7g8/gh-ruleset-branch        # mine
-    actions/gh-actions-cache        # manage gh action cache
-    andyfeller/gh-dependency-report # Tell me about dependencies and licenses
-    chelnak/gh-environments         # crud
-    cschleiden/gh-actionlint        # Lint .github/workflows/
-    davidraviv/gh-clean-branches    # delete local branches
-    ericwb/gh-alerts                # gh alerts -o $org | awk '{print $3}' | sort | uniq -c | sort -nr
-    gitpod-io/gh-gp                 # gh gp to open .gitpod.yaml
-    HaywardMorihara/gh-tidy         # clean up safely
-    mislav/gh-repo-collab           # permissions, teams
-    mislav/gh-repo-topic            # crud topics
-    rsese/gh-actions-status         # stuff
-    srz-zumix/gh-team-kit           # teams
-    vilmibm/gh-user-status          # status aim crud
-  )
-
-  local ext
-  for ext in "${extensions[@]}"; do
-    gh extension install "$ext" || p6_echo "failed: $ext"
-  done
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::langs()
-#
-#>
-######################################################################
-p6df::modules::github::langs() {
-
-  p6df::modules::github::langs::extensions
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::home::symlinks()
-#
-#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-p6df::modules::github::home::symlinks() {
-
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" "$HOME/.actrc"
-
-  p6_file_symlink "$P6_DFZ_SRC_DIR/ahmedasmar/devops-claude-skills/ci-cd"                                                    "$HOME/.claude/skills/ci-cd"
-  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-generator"          "$HOME/.claude/skills/github-actions-generator"
-  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-validator"          "$HOME/.claude/skills/github-actions-validator"
-  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-generator"               "$HOME/.claude/skills/gitlab-ci-generator"
-  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-validator"               "$HOME/.claude/skills/gitlab-ci-validator"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::github::aliases::init()
-#
-#>
 ######################################################################
 p6df::modules::github::aliases::init() {
 
@@ -212,11 +77,36 @@ p6df::modules::github::aliases::init() {
 }
 
 ######################################################################
-#<
-#
-# Function: p6df::modules::github::mcp()
-#
-#>
+p6df::modules::github::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-github/share/.actrc" "$HOME/.actrc"
+
+  p6_file_symlink "$P6_DFZ_SRC_DIR/ahmedasmar/devops-claude-skills/ci-cd"                                                    "$HOME/.claude/skills/ci-cd"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-generator"          "$HOME/.claude/skills/github-actions-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/github-actions-validator"          "$HOME/.claude/skills/github-actions-validator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-generator"               "$HOME/.claude/skills/gitlab-ci-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/gitlab-ci-validator"               "$HOME/.claude/skills/gitlab-ci-validator"
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::github::external::brews() {
+
+  p6df::core::homebrew::cli::brew::install gh
+  p6df::core::homebrew::cli::brew::install act
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::github::langs() {
+
+  p6df::modules::github::langs::extensions
+
+  p6_return_void
+}
+
 ######################################################################
 p6df::modules::github::mcp() {
 
@@ -225,6 +115,122 @@ p6df::modules::github::mcp() {
   p6_return_void
 }
 
+######################################################################
+p6df::modules::github::vscodes() {
+
+  p6df::modules::vscode::extension::install eamodio.gitlens
+  p6df::modules::vscode::extension::install github.vscode-pull-request-github
+  p6df::modules::vscode::extension::install github.vscode-github-actions
+  p6df::modules::vscode::extension::install github.vscode-codeql
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::github::vscodes::config() {
+
+  cat <<'EOF'
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.quickDiff": true,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.blame.heatmap.enabled": false
+EOF
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::github::profile::mod() {
+
+  p6_return_words 'github' '$GH_HOST'
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::deps()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::vscodes()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::vscodes::config()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::external::brews()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::langs::extensions()
+#
+#>
+######################################################################
+p6df::modules::github::langs::extensions() {
+
+  local -a extensions=(
+    # p6m7g8/gh-parallel              # mine
+    # p6m7g8/gh-repo-mgmt             # mine
+    # p6m7g8/gh-ruleset-branch        # mine
+    actions/gh-actions-cache        # manage gh action cache
+    andyfeller/gh-dependency-report # Tell me about dependencies and licenses
+    chelnak/gh-environments         # crud
+    cschleiden/gh-actionlint        # Lint .github/workflows/
+    davidraviv/gh-clean-branches    # delete local branches
+    ericwb/gh-alerts                # gh alerts -o $org | awk '{print $3}' | sort | uniq -c | sort -nr
+    gitpod-io/gh-gp                 # gh gp to open .gitpod.yaml
+    HaywardMorihara/gh-tidy         # clean up safely
+    mislav/gh-repo-collab           # permissions, teams
+    mislav/gh-repo-topic            # crud topics
+    rsese/gh-actions-status         # stuff
+    srz-zumix/gh-team-kit           # teams
+    vilmibm/gh-user-status          # status aim crud
+  )
+
+  local ext
+  for ext in "${extensions[@]}"; do
+    gh extension install "$ext" || p6_echo "failed: $ext"
+  done
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::github::langs()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::home::symlinks()
+#
+#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::aliases::init()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::github::mcp()
+#
+#>
 ######################################################################
 #<
 #
@@ -235,9 +241,3 @@ p6df::modules::github::mcp() {
 #
 #  Environment:	 GH_HOST
 #>
-######################################################################
-p6df::modules::github::profile::mod() {
-
-  p6_return_words 'github' '$GH_HOST'
-}
-
